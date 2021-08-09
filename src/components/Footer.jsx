@@ -10,23 +10,23 @@ function Footer() {
 		<footer className='footer'>
 			<div className="max-w-6xl mx-auto px-4">
 				<div className="flex justify-between">
-					<div className="flex space-x-7 py-10 items-center">
+					<div className="flex py-8 gap-y-5 flex-col sm:flex-row sm:space-x-7 sm:py-10 sm:items-center">
 						<span className='text-xl uppercase text-white'>2021 mirasinvest.kz</span>
 						<span className='text-xl text-white'>All rights reserved.</span>
 
 						<div>
-							<div className='flex space-x-4 ml-4'>
-								<CustomLink>
-									<img src={TelegramIcon} alt="telegram" />
+							<div className='flex gap-x-4 gap-y-2 sm:ml-4'>
+								<CustomLink href="https://www.telegram.com" className='flex-shrink-0'>
+									<img src={TelegramIcon} alt="telegram" className="h-6 w-6 object-contain" />
 								</CustomLink>
-								<CustomLink>
-									<img src={InstagramIcon} alt="instagram" />
+								<CustomLink href="https://www.instagram.com" className='flex-shrink-0'>
+									<img src={InstagramIcon} alt="instagram" className="h-6 w-6 object-contain" />
 								</CustomLink>
-								<CustomLink>
-									<img src={FacebookIcon} alt="facebook" />
+								<CustomLink href="https://www.facebook.com" className='flex-shrink-0'>
+									<img src={FacebookIcon} alt="facebook" className="h-6 w-6 object-contain" />
 								</CustomLink>
-								<CustomLink>
-									<img src={YoutubeIcon} alt="youtube" />
+								<CustomLink href="https://www.youtube.com" className='flex-shrink-0'>
+									<img src={YoutubeIcon} alt="youtube" className="h-6 w-6 object-contain" />
 								</CustomLink>
 							</div>
 						</div>
