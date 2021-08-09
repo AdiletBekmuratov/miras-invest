@@ -9,21 +9,19 @@ const Header = () => {
 		<nav className="bg-white shadow-md z-50 p-5 sticky top-0">
 			<div className="max-w-6xl mx-auto px-4">
 				<div className="flex justify-between">
-					<div className="flex space-x-7">
-						<div>
+					<div className="flex-shrink-0">
 							<a href="#" className="flex items-center py-4 px-2">
 								<img src={Logo} className="h-11 w-44 mr-2" />
 							</a>
-						</div>
 					</div>
 
-					<div className="hidden md:flex items-center lg:space-x-14 md:space-x-7 sm:space-x-4">
-						<NavLink to='/' className="py-4 px-2 text-gray-500 uppercase hover:text-lightBlue transition duration-300">Главная</NavLink>
-						<NavLink to='/about' className="py-4 px-2 text-gray-500 uppercase hover:text-lightBlue transition duration-300">О нас</NavLink>
-						<NavLink to='/' className="py-4 px-2 text-gray-500 uppercase hover:text-lightBlue transition duration-300">Объекты</NavLink>
-						<NavLink to='/' className="py-4 px-2 text-gray-500 uppercase hover:text-lightBlue transition duration-300">Услуги</NavLink>
-						<NavLink to='/' className="py-4 px-2 text-gray-500 uppercase hover:text-lightBlue transition duration-300">Новости</NavLink>
-						<NavLink to='/' className="py-4 px-2 uppercase hover:text-lightBlue transition duration-300 font-semibold text-lg text-lightBlue">Об Алании</NavLink>
+					<div className="hidden md:flex items-center lg:space-x-14 md:space-x-4 space-x-2 py-4">
+						<NavLink to='/' className="text-gray-500 uppercase hover:text-lightBlue transition duration-300 text-sm lg:text-base">Главная</NavLink>
+						<NavLink to='/about' className="text-gray-500 uppercase hover:text-lightBlue transition duration-300 text-sm lg:text-base">О нас</NavLink>
+						<NavLink to='/' className="text-gray-500 uppercase hover:text-lightBlue transition duration-300 text-sm lg:text-base">Объекты</NavLink>
+						<NavLink to='/' className="text-gray-500 uppercase hover:text-lightBlue transition duration-300 text-sm lg:text-base">Услуги</NavLink>
+						<NavLink to='/' className="text-gray-500 uppercase hover:text-lightBlue transition duration-300 text-sm lg:text-base">Новости</NavLink>
+						<NavLink to='/' className="uppercase hover:text-lightBlue transition duration-300 font-semibold text-sm lg:text-lg text-lightBlue whitespace-nowrap">Об Алании</NavLink>
 					</div>
 
 					<div className="md:hidden flex items-center">
