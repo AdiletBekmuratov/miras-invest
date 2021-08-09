@@ -6,7 +6,7 @@ import Logo from '/images/logo.svg'
 const Header = () => {
 
 	return (
-		<nav className="bg-white shadow-md">
+		<nav className="bg-white shadow-md z-50 p-5 sticky top-0">
 			<div className="max-w-6xl mx-auto px-4">
 				<div className="flex justify-between">
 					<div className="flex space-x-7">
@@ -17,7 +17,7 @@ const Header = () => {
 						</div>
 					</div>
 
-					<div className="hidden md:flex items-center lg:space-x-14 sm:space-x-4">
+					<div className="hidden md:flex items-center lg:space-x-14 md:space-x-7 sm:space-x-4">
 						<NavLink to='/' className="py-4 px-2 text-gray-500 uppercase hover:text-lightBlue transition duration-300">Главная</NavLink>
 						<NavLink to='/about' className="py-4 px-2 text-gray-500 uppercase hover:text-lightBlue transition duration-300">О нас</NavLink>
 						<NavLink to='/' className="py-4 px-2 text-gray-500 uppercase hover:text-lightBlue transition duration-300">Объекты</NavLink>
