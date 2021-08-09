@@ -3,34 +3,76 @@
 @tailwind utilities;
 
 @layer base {
-  /* inter-regular - latin */
+	@font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 100;
+    font-display: optional;
+    src: url('/fonts/Montserrat-Thin.ttf') format('truetype');
+  }
+
+	@font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 200;
+    font-display: optional;
+    src: url('/fonts/Montserrat-ExtraLight.ttf') format('truetype');
+  }
+
+	@font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 300;
+    font-display: optional;
+    src: url('/fonts/Montserrat-Light.ttf') format('truetype');
+  }
+
   @font-face {
-    font-family: 'Inter';
+    font-family: 'Montserrat';
     font-style: normal;
     font-weight: 400;
     font-display: optional;
-    src: url('/fonts/inter-regular-webfont.woff2') format('woff2'),
-      url('/fonts/inter-regular-webfont.woff') format('woff');
+    src: url('/fonts/Montserrat-Regular.ttf') format('truetype');
   }
 
-  /* inter-500 - latin */
   @font-face {
-    font-family: 'Inter';
+    font-family: 'Montserrat';
     font-style: normal;
     font-weight: 500;
     font-display: optional;
-    src: url('/fonts/inter-medium-webfont.woff2') format('woff2'),
-      url('/fonts/inter-medium-webfont.woff') format('woff');
+    src: url('/fonts/Montserrat-Medium.ttf') format('truetype');
   }
 
-  /* inter-700 - latin */
+	@font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-display: optional;
+    src: url('/fonts/Montserrat-SemiBold.ttf') format('truetype');
+  }
+
   @font-face {
-    font-family: 'Inter';
+    font-family: 'Montserrat';
     font-style: normal;
     font-weight: 700;
     font-display: optional;
-    src: url('/fonts/inter-bold-webfont.woff2') format('woff2'),
-      url('/fonts/inter-bold-webfont.woff') format('woff');
+    src: url('/fonts/Montserrat-Bold.ttf') format('truetype');
+  }
+
+	@font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 800;
+    font-display: optional;
+    src: url('/fonts/Montserrat-ExtraBold.ttf') format('truetype');
+  }
+
+	@font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 900;
+    font-display: optional;
+    src: url('/fonts/Montserrat-Black.ttf') format('truetype');
   }
 
   /* Write your own custom base styles here */
