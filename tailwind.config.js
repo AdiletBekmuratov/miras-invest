@@ -7,7 +7,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        primary: ['Inter', ...fontFamily.sans],
+        primary: ['Montserrat', ...fontFamily.sans],
       },
       colors: {
         primary: {
@@ -15,6 +15,8 @@ module.exports = {
           500: '#00c4fd',
         },
         dark: '#333333',
+				lightBlue: '#22BFEA',
+				darkerBlue: '#0AAAC0',
       },
     },
   },

@@ -1,6 +1,5 @@
 import React from 'react';
-
-import CustomLink from '@/components/CustomLink';
+import Header from '@/components/Header';
 
 export default function Home() {
   return (

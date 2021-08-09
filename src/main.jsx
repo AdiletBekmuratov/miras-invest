@@ -8,8 +8,8 @@ import App from '@/App';
 ReactDOM.render(
   <React.StrictMode>
     <Helmet
-      defaultTitle='Vite React Tailwind Starter'
-      titleTemplate='%s | Vite React Tailwind Starter'
+      defaultTitle='MirasInvest'
+      titleTemplate='%s | Главная'
     >
       <meta charSet='utf-8' />
       <html lang='id' amp />

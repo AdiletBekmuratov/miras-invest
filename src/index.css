@@ -63,3 +63,7 @@
     @apply w-11/12 mx-auto;
   }
 }
+
+.footer{
+	background: linear-gradient(262.8deg, #007FFF 44.39%, #125293 58.35%);
+}
