@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 100;
+    font-display: optional;
+    src: url('/fonts/Montserrat-Thin.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 200;
+    font-display: optional;
+    src: url('/fonts/Montserrat-ExtraLight.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 300;
+    font-display: optional;
+    src: url('/fonts/Montserrat-Light.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-display: optional;
+    src: url('/fonts/Montserrat-Regular.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-display: optional;
+    src: url('/fonts/Montserrat-Medium.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-display: optional;
+    src: url('/fonts/Montserrat-SemiBold.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-display: optional;
+    src: url('/fonts/Montserrat-Bold.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 800;
+    font-display: optional;
+    src: url('/fonts/Montserrat-ExtraBold.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 900;
+    font-display: optional;
+    src: url('/fonts/Montserrat-Black.ttf') format('truetype');
+  }
+
+  /* Write your own custom base styles here */
+  h1 {
+    @apply text-3xl font-bold md:text-5xl font-primary;
+  }
+
+  h2 {
+    @apply text-2xl font-bold md:text-4xl font-primary;
+  }
+
+  h3 {
+    @apply text-xl font-bold md:text-3xl font-primary;
+  }
+
+  h4 {
+    @apply text-lg font-bold font-primary;
+  }
+
+  body {
+    @apply text-sm font-primary md:text-base;
+  }
+
+  .layout {
+    /* 750px */
+    /* max-width: 43.75rem; */
+
+    /* 1100px */
+    max-width: 68.75rem;
+    @apply w-11/12 mx-auto;
+  }
+}
+
+.footer {
+  background: linear-gradient(262.8deg, #007fff 44.39%, #125293 58.35%);
+}
