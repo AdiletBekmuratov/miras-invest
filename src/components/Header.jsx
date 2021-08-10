@@ -10,9 +10,9 @@ const Header = () => {
 			<div className="max-w-6xl mx-auto px-4">
 				<div className="flex justify-between">
 					<div className="flex-shrink-0">
-							<a href="#" className="flex items-center py-4 px-2">
-								<img src={Logo} className="h-11 w-44 mr-2" />
-							</a>
+						<a href="#" className="flex items-center py-4 px-2">
+							<img src={Logo} className="h-11 w-44 mr-2" />
+						</a>
 					</div>
 
 					<div className="hidden md:flex items-center lg:space-x-14 md:space-x-4 space-x-2 py-4">
