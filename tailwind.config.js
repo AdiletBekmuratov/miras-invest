@@ -14,7 +14,11 @@ module.exports = {
           400: '#00E0F3',
           500: '#00c4fd',
         },
+
+        bBlue: '#007FFF',
         dark: '#333333',
+        yellowIs: '#FFF500',
+        lightBlue2: '#59CFEF',
 				lightBlue: '#22BFEA',
 				darkerBlue: '#0AAAC0',
 				hTextBlue: '#0080FF',
