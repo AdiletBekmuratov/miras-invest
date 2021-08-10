@@ -15,7 +15,7 @@ export default function Routes() {
       <Switch>
         <Route exact path='/' component={Home} />
 				<Route exact path='/about' component={About} />
-				<Route exact path='/details' component={SinglePalace} />
+				<Route exact path='/articles/:id' component={SinglePalace} />
       </Switch>
 
 			<Footer />

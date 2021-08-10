@@ -3,21 +3,46 @@ import GradientCard from '@/components/GradientCard';
 import ObjectCard from '@/components/ObjectCard'
 import object1 from '/images/object1.png'
 import object2 from '/images/object2.png'
-import image1 from '/images/news1.png'
-import image2 from '/images/news2.png'
-import image3 from '/images/news3.png'
-import image4 from '/images/news4.png'
 import antalya from '/images/antalya.png'
 import sun from '/images/sun.svg'
 import percentage from '/images/percentage.svg'
 import Info from '@/components/Info';
 import ContactUs from '@/components/ContactUs';
+import { useQuery, gql } from '@apollo/client'
 
+const ARTICLES = gql`
+	query GetArticles{
+  articles(limit:4, sort:"id:DESC"){
+    id
+    title
+    description
+    image{
+      url
+    }
+  }
+}
+`
 
 export default function Home() {
+
+	const { loading, error, data } = useQuery(ARTICLES)
+	console.log(data);
+	if (loading) {
+		return (
+			<p>Loading...</p>
+		)
+	}
+
+	if (error) {
+		return (
+			<p>Error: {error}</p>
+		)
+	}
+
 	return (
 		<>
 			<main className='bg-white'>
+				<Info />
 				<div className='max-w-6xl mx-auto px-4 py-10'>
 					<section>
 						<div className="w-full">
@@ -30,12 +55,12 @@ export default function Home() {
 								<ObjectCard title="Toprak palace villas" image={object1} loc="Алания, Каргыджак" />
 							</div>
 							<div className="bg-bBlue rounded-xl mt-10 flex p-8 w-full">
-								<img src={percentage} />
-								<p className='text-white text-2xl ml-8'>Также строительная компания, в интересах своих клиентов предоставляет выгодные условия беспроцентной рассрочки сроком на 18 месяцев, при первоначальном взносе 50%.</p>
+								<img src={percentage} className='' />
+								<p className='text-white md:text-2xl ml-8'>Также строительная компания, в интересах своих клиентов предоставляет выгодные условия беспроцентной рассрочки сроком на 18 месяцев, при первоначальном взносе 50%.</p>
 							</div>
 							<div className="bg-bBlue rounded-xl mt-10 flex p-8 w-full">
 								<img src={sun} />
-								<p className='text-white text-2xl ml-8'>До окончания строительства комплекса компания предоставляются апартаменты для отдыха в готовой резиденции люкс-класса.</p>
+								<p className='text-white md:text-2xl ml-8'>До окончания строительства комплекса компания предоставляются апартаменты для отдыха в готовой резиденции люкс-класса.</p>
 							</div>
 						</div>
 					</section>
@@ -53,12 +78,11 @@ export default function Home() {
 				<div className='max-w-6xl mx-auto px-4 py-10'>
 					<section>
 						<div class="w-full">
-							<div className="uppercase text-4xl text-hTextBlue font-bold"> Новости</div>
+							<div className="uppercase text-4xl text-hTextBlue font-bold">Новости</div>
 							<div className='grid grid-cols-1 md:grid-cols-2 pt-10 gap-y-6 gap-x-12'>
-								<GradientCard title="Вечерняя Алания" image={image2} desc="Красиво очень очень красиво что сказать Красиво очень очень красиво что сказать Красиво очень очень красиво что сказатьКрасиво очень очень красиво что сказать" />
-								<GradientCard title="Дневная Алания" image={image1} desc="Красиво очень очень красиво что сказать Красиво очень очень красиво что сказать Красиво очень очень красиво что сказатьКрасиво очень очень красиво что сказать" />
-								<GradientCard title="В Алматы лучше" image={image3} desc="Красиво очень очень красиво что сказать Красиво очень очень красиво что сказать Красиво очень очень красиво что сказатьКрасиво очень очень красиво что сказать" />
-								<GradientCard title="Инвестиции в будущее" image={image4} desc="Красиво очень очень красиво что сказать Красиво очень очень красиво что сказать Красиво очень очень красиво что сказатьКрасиво очень очень красиво что сказать" />
+								{data.articles.map(article => (
+									<GradientCard key={article.id} article={article} />
+								))}
 							</div>
 						</div>
 					</section>

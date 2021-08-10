@@ -6,9 +6,6 @@ module.exports = {
 	darkMode: false, // or 'media' or 'class'
 	theme: {
 		extend: {
-			backgroundImage: theme => ({
-				'fisrt-back': "url('./src/pictures/BeTKC3wIOz8.jpg')"
-			}),
 			fontFamily: {
 				primary: ['Montserrat', ...fontFamily.sans],
 			},
