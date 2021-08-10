@@ -21,10 +21,10 @@ function Info() {
 					<div className="leading-[74px] md:leading-[104px] uppercase text-white text-5xl md:text-[85px] font-bold">
 						Инвестируй <br /> в надежность
 					</div>
-					<div>
-						<button className="bg-darkerBlue h-[60px] w-[200px] shadow-xl rounded-md text-2xl text-white mt-4">
+					<div className='mt-10'>
+						<a href='#contactUsHome' className="bg-darkerBlue h-[60px] w-[200px] px-8 py-4 shadow-xl rounded-md text-2xl text-white cursor-pointer">
 							Оформить
-						</button>
+						</a>
 					</div>
 				</div>
 			</section>
@@ -94,11 +94,11 @@ function Info() {
 				</section>
 			</div>
 
-			<section className='mt-12 pb-10 flex justify-center items-center'>
+			<section className='mt-12 pb-10 flex justify-center items-center' id='contactUsHome'>
 				<BadgeCard />
 			</section>
 
-			<section className='mt-10'>
+			<section className='mt-10' >
 				<div className='max-w-6xl mx-auto px-4 mt-10'>
 					<ContactUsHome />
 				</div>

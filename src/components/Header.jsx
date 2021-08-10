@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 
 import Logo from '/images/logo.svg'
 
 const Header = () => {
+	const [openMobile, setOpenMobile] = useState(false)
 
 	return (
 		<nav className="bg-white shadow-md z-50 p-5 sticky top-0">
@@ -25,8 +26,8 @@ const Header = () => {
 					</div>
 
 					<div className="md:hidden flex items-center">
-						<button className="outline-none mobile-menu-button">
-							<svg className=" w-6 h-6 text-gray-500 hover:text-green-500 "
+						<button className="outline-none mobile-menu-button" onClick={() => setOpenMobile(!openMobile)}>
+							<svg className=" w-6 h-6 text-gray-500 hover:text-lightBlue"
 								x-show="!showMenu"
 								fill="none"
 								stroke-linecap="round"
@@ -41,12 +42,15 @@ const Header = () => {
 					</div>
 				</div>
 			</div>
-			<div className="hidden mobile-menu">
-				<ul className="">
-					<li className="active"><a href="index.html" className="block text-sm px-2 py-4 text-white bg-green-500 font-semibold">Home</a></li>
-					<li><a href="#services" className="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Services</a></li>
-					<li><a href="#about" className="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">About</a></li>
-					<li><a href="#contact" className="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Contact Us</a></li>
+			<div className={`${openMobile ? 'block' : 'hidden'} mobile-menu`}>
+				<ul>
+					<li><NavLink to='/' className="block text-sm px-2 py-4 hover:text-lightBlue font-semibold" onClick={() => setOpenMobile(false)} >Главная</NavLink></li>
+					<li><NavLink to='/about' className="block text-sm px-2 py-4 hover:text-lightBlue transition duration-300" onClick={() => setOpenMobile(false)} >О нас</NavLink></li>
+					<li><NavLink to='/' className="block text-sm px-2 py-4 hover:text-lightBlue transition duration-300" onClick={() => setOpenMobile(false)} >Объекты</NavLink></li>
+					<li><NavLink to='/' className="block text-sm px-2 py-4 hover:text-lightBlue transition duration-300" onClick={() => setOpenMobile(false)} >Услуги</NavLink></li>
+					<li><NavLink to='/' className="block text-sm px-2 py-4 hover:text-lightBlue transition duration-300" onClick={() => setOpenMobile(false)} >Новости</NavLink></li>
+					<li><NavLink to='/' className="block text-sm px-2 py-4 hover:text-lightBlue transition duration-300" onClick={() => setOpenMobile(false)} >Об Алании</NavLink></li>
+
 				</ul>
 			</div>
 		</nav>
