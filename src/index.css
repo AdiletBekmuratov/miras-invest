@@ -119,12 +119,7 @@
 }
 
 .bgcolor {
-  background: linear-gradient(0deg, #104077 0%, rgba(0, 127, 255, 0) 100%);
-}
-
-.NEWS {
-  font-size: 40px;
-  color: #0080FF;
+  background-image: linear-gradient(0deg, #104077 0%, rgba(0, 127, 255, 0) 100%);
 }
 
 .bgcolor-about {
@@ -133,18 +128,4 @@
 
 .bgcolor-obj {
   background: linear-gradient(0deg, #007FFF 0%, rgba(0, 127, 255, 0) 100%);
-}
-
-.line {
-  width: 702px;
-  height: 0px;
-  margin-left: 400px;  
-  border: 4px solid #007FFF;
-}
-
-.info {
-  width: 1170px;
-  height: 128px;
-  background: #007FFF;
-  border-radius: 10px;
 }

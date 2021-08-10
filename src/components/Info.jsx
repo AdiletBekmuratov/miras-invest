@@ -1,12 +1,11 @@
 import React from 'react'
 import InfoBox from './InfoBox'
-import './style.css'
 
 function Info() {
 	return (
 		<>
 			<div className="mx-auto bg-fisrt-back h-[820px]">
-				<img src="/src/pictures/gull_PNG17 1.png" className=" absolute mt-[86px] ml-[988px] " />
+				<img src="/src/pictures/gull_PNG17 1.png" className="absolute mt-[86px] ml-[988px] " />
 				<div className="mt-48 ml-16 md:ml-60 h-[1600px] leading-[74px] md:leading-[104px] 
       uppercase text-white text-[64px] md:text-[85px] font-bold absolute">Инвестируй <br /> в надежность</div>
 				<div>
