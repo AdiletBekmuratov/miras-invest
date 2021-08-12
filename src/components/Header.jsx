@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 
 import Logo from '/images/logo.svg'
@@ -10,23 +10,26 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import HttpApi from 'i18next-http-backend';
 import i18next from "i18next";
 
+
+import Flag from 'react-flagkit';
+
+
+
 const languages = [
 	{
-		code: 'en',
-		name: 'English',
-		country_code: 'gb',
+		code: 'ru',
+		country_code: 'RU',
 	},
 	{
-		code: 'ru',
-		name: 'Russian',
-		country_code: 'ru',
+		code: 'en',
+		country_code: 'US',
 	},
 	{
 		code: 'kz',
-		name: 'Kazakh',
-		country_code: 'kz',
+		country_code: 'KZ',
 	},
 ]
+
 
 i18n
 	.use(initReactI18next) // passes i18n down to react-i18next
@@ -49,8 +52,16 @@ i18n
 
 
 const Header = () => {
-	const { t } = useTranslation()
+
+	const { t, i18n } = useTranslation()
 	const [openMobile, setOpenMobile] = useState(false)
+	const [language, setLanguage] = useState("RU")
+	useEffect(() => {
+		if (i18n.language) {
+			var strlng = i18n.language === 'en' ? 'US' : i18n.language.toUpperCase()
+			setLanguage(strlng)
+		}
+	}, [i18n.language])
 
 	return (
 		<nav className="bg-white shadow-md z-50 p-5 sticky top-0">
@@ -62,27 +73,27 @@ const Header = () => {
 						</NavLink>
 					</div>
 
-					<div className="hidden md:flex items-center lg:space-x-14 md:space-x-4 space-x-2 py-4">
+					<div className="hidden md:flex items-center lg:space-x-10 md:space-x-4 space-x-2 py-4">
 						<NavLink to='/' className="text-gray-500 uppercase hover:text-lightBlue transition duration-300 text-sm lg:text-base">{t('main')}</NavLink>
-						<NavLink to='/about' className="text-gray-500 uppercase hover:text-lightBlue transition duration-300 text-sm lg:text-base">{t('about_us')}</NavLink>
+						<NavLink to='/about' className="text-gray-500 uppercase hover:text-lightBlue transition duration-300 text-sm lg:text-base whitespace-nowrap">{t('about_us')}</NavLink>
 						<NavLink to='/' className="text-gray-500 uppercase hover:text-lightBlue transition duration-300 text-sm lg:text-base">{t('objects')}</NavLink>
 						<NavLink to='/' className="text-gray-500 uppercase hover:text-lightBlue transition duration-300 text-sm lg:text-base">{t('service')}</NavLink>
 						<NavLink to='/' className="text-gray-500 uppercase hover:text-lightBlue transition duration-300 text-sm lg:text-base">{t('news')}</NavLink>
 						<NavLink to='/' className="uppercase hover:text-lightBlue transition duration-300 font-semibold text-sm lg:text-lg text-lightBlue whitespace-nowrap">{t('about_alanya')}</NavLink>
-						<div className='w-11'>
-							<div className="dropdown inline-block relative">
-								<button className="bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center">
-									<span>Dropdown</span>
-									<svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /> </svg>
+
+						<div className='w-full'>
+							<div className="dropdown relative">
+								<button className=" text-gray-700 font-semibold flex rounded items-center justify-between">
+									<Flag country={language} />
+									<svg className="fill-current h-4 w-4 ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /> </svg>
 								</button>
-								<ul className="dropdown-menu absolute hidden text-gray-700 pt-1">
+								<ul className="dropdown-menu absolute hidden text-gray-400 pt-2 w-full ">
 									{languages.map(({ code, name, country_code }) => (
-										<li className='rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap' key={country_code}>
-											<button onClick={() => { i18next.changeLanguage(code) }} > {name} </button>
+										<li className='flex bg-gray-200 hover:bg-gray-400 py-2 px-2 justify-center whitespace-no-wrap' key={country_code}>
+											<Flag country={country_code} onClick={() => { i18next.changeLanguage(code) }} />
 										</li>))}
 								</ul>
 							</div>
-
 						</div>
 					</div>
 

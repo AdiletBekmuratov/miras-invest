@@ -17,7 +17,8 @@ function ContactUs() {
 				<div className="flex flex-col md:flex-row">
 					<div className="w-full md:w-5/12">
 						<div className="mb-8">
-							<input type="text" placeholder={t('name_surname')} className="placeholder-gray-500 border-1 border-bBlue rounded px-3 py-1 w-full" />
+							<input type="text" placeholder={t('name_surname')} className="placeholder-gray-500 border-1 border-bBlue rounded px-3 py-1 w-full" required />
+							
 						</div>
 						<div className="mb-8">
 							<input type="text" placeholder={t('phone')} className="placeholder-gray-500 border-1 border-bBlue rounded px-3 py-1 w-full" />

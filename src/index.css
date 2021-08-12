@@ -136,25 +136,3 @@
 .dropdown:hover .dropdown-menu {
   display: block;
 }
-
-.input-placeholder {
-  position: relative;
-}
-.input-placeholder input {
-  padding: 2px;
-}
-.input-placeholder input:valid + .placeholder {
-  display: none;
-}
-.placeholder {
-  position: absolute;
-  pointer-events: none;
-  top: 2px;
-  bottom: 2px;
-  left: 6px;
-  margin: auto;
-  color: #ccc;
-}
-.placeholder span {
-  color: red;
-}
