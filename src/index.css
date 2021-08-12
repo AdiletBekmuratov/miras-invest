@@ -141,3 +141,7 @@
 .bgcolor-about {
   background: linear-gradient(90.08deg, #0D3B73 0.07%, rgba(10, 120, 255, 0) 99.94%);
 }
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}

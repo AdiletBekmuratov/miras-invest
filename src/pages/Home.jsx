@@ -11,6 +11,8 @@ import ContactUs from '@/components/ContactUs';
 import { useQuery, gql } from '@apollo/client'
 import Loader from 'react-loader-spinner';
 
+import { useTranslation } from "react-i18next";
+
 const ARTICLES = gql`
 	query GetArticles{
   articles(limit:4, sort:"id:DESC"){
@@ -25,6 +27,7 @@ const ARTICLES = gql`
 
 export default function Home() {
 
+	const { t } = useTranslation();
 	const { loading, error, data } = useQuery(ARTICLES)
 
 	if (loading) {
@@ -54,7 +57,7 @@ export default function Home() {
 					<section id='objects'>
 						<div className="w-full">
 							<div className='flex justify-between'>
-								<div className="uppercase text-5xl text-lightBlue font-semibold"> Наши объекты </div>
+								<div className="uppercase text-5xl text-lightBlue font-semibold"> {t('our_obj')}  </div>
 								<div className='border-b-4 border-lightBlue hidden md:block md:w-[55%]'></div>
 							</div>
 							<div className='grid grid-cols-1 md:grid-cols-2 pt-10 gap-y-6 gap-x-8'>
@@ -62,12 +65,12 @@ export default function Home() {
 								<ObjectCard title="Toprak palace villas" image={object1} loc="Алания, Каргыджак" />
 							</div>
 							<div className="bg-lightBlue rounded-xl mt-10 flex p-8 w-full">
-								<img src={percentage} className='' />
-								<p className='text-white md:text-2xl ml-8'>Также строительная компания, в интересах своих клиентов предоставляет выгодные условия беспроцентной рассрочки сроком на 18 месяцев, при первоначальном взносе 50%.</p>
+								<img src={percentage} />
+								<p className='text-white md:text-2xl ml-8'>{t('percentage')}</p>
 							</div>
 							<div className="bg-lightBlue rounded-xl mt-10 flex p-8 w-full">
 								<img src={sun} />
-								<p className='text-white md:text-2xl ml-8'>До окончания строительства комплекса компания предоставляются апартаменты для отдыха в готовой резиденции люкс-класса.</p>
+								<p className='text-white md:text-2xl ml-8'>{t('sun')}</p>
 							</div>
 						</div>
 					</section>
@@ -76,9 +79,9 @@ export default function Home() {
 					<div className="absolute left-0 top-0 bgcolor-about w-full h-full" ></div>
 					<img src={Alanya} alt="alanya" className='object-cover w-full h-full' />
 					<div className='absolute mx-auto md:left-0 right-0 text-left left-1/2 -translate-x-1/2 md:-translate-x-0 top-0 max-w-6xl sm:px-10 lg:px-4 py-32'>
-						<h1 className='text-white font-extrabold'>Алания это...</h1>
+						<h1 className='text-white font-extrabold'>{t('alanya_is')}</h1>
 						<p className='text-white text-justify text-sm sm:text-base md:text-2xl w-full md:w-2/3 mt-7'>
-							...это небольшой город в Турции, недалеко от Анталии, несмотря на небольшую площадь города и количество населения, он считается одним из самых важных туристических курортов в Турции. За последние годы Турция еще больше завоевала любовь туристов и стала одной из успешных стран-лидеров Европы и Азии, о которой мечтают не только люди, предпочитающие хороший отдых, но и инвесторы. В последние годы наблюдается увеличение спроса на недвижимость в Алании (тут текст нужно будет изменить на наш)
+							{t('more')}
 						</p>
 					</div>
 				</section>
