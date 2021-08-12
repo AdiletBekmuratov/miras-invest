@@ -7,7 +7,7 @@ import YoutubeIcon from '/images/youtube.svg'
 
 function Footer() {
 	return (
-		<footer className='footer'>
+		<footer className='footer mt-auto'>
 			<div className="max-w-6xl mx-auto px-4">
 				<div className="flex justify-between">
 					<div className="flex py-8 gap-y-5 flex-col sm:flex-row sm:space-x-7 sm:py-10 sm:items-center">

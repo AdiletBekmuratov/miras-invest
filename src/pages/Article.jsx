@@ -1,8 +1,10 @@
 import ContactUs from '@/components/ContactUs'
 import { useQuery, gql } from '@apollo/client'
 import React from 'react'
+import Loader from 'react-loader-spinner'
 import ReactMarkdown from 'react-markdown'
 import { useParams } from 'react-router'
+import rehypeRaw from 'rehype-raw'
 import { fromImageToUrl } from '../utils/imageURL'
 
 const GET_ARTICLE = gql`
@@ -30,7 +32,14 @@ function Article() {
 
 	if (loading) {
 		return (
-			<p>Loading...</p>
+			<div className="flex my-auto justify-center">
+				<Loader
+					type="TailSpin"
+					color="#00BFFF"
+					height={100}
+					width={100}
+				/>
+			</div>
 		)
 	}
 
@@ -56,9 +65,7 @@ function Article() {
 				<div className='max-w-6xl mx-auto px-4 py-10'>
 					<section>
 						{data?.article?.body && (
-							<ReactMarkdown>
-								{data?.article?.description}
-							</ReactMarkdown>
+							<ReactMarkdown rehypePlugins={[rehypeRaw]} children={data?.article?.body} />
 						)}
 					</section>
 				</div>

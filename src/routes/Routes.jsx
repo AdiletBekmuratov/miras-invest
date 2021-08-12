@@ -6,19 +6,24 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import About from '@/pages/About';
 import SinglePalace from '@/pages/SinglePalace';
+import ScrollToTop from '../utils/ScrollToTop';
+import Article from '@/pages/Article';
 
 export default function Routes() {
-  return (
-    <Router>
-			<Header/>
-			
-      <Switch>
-        <Route exact path='/' component={Home} />
-				<Route exact path='/about' component={About} />
-				<Route exact path='/articles/:id' component={SinglePalace} />
-      </Switch>
-
-			<Footer />
-    </Router>
-  );
+	return (
+		<Router>
+			<div className='min-h-screen flex flex-col'>
+				<Header />
+				<ScrollToTop>
+					<Switch>
+						<Route exact path='/' component={Home} />
+						<Route exact path='/about' component={About} />
+						<Route exact path='/articles/:id' component={Article} />
+						<Route exact path='/objects/:id' component={SinglePalace} />
+					</Switch>
+				</ScrollToTop>
+				<Footer />
+			</div>
+		</Router>
+	);
 }

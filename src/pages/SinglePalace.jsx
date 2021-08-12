@@ -1,12 +1,14 @@
 import ContactUs from '@/components/ContactUs'
-import {useQuery, gql} from '@apollo/client'
+import { useQuery, gql } from '@apollo/client'
 import React from 'react'
+import Loader from 'react-loader-spinner'
 import ReactMarkdown from 'react-markdown'
 import { useParams } from 'react-router'
+import rehypeRaw from 'rehype-raw'
 import { fromImageToUrl } from '../utils/imageURL'
 
-const GET_ARTICLE = gql`
-query GetArticle($id: ID!){
+const GET_OBJECT = gql`
+query GetObject($id: ID!){
 		article(id: $id){
 			id
 			title
@@ -22,7 +24,7 @@ query GetArticle($id: ID!){
 
 function SinglePalace() {
 	const { id } = useParams()
-	const { loading, error, data } = useQuery(GET_ARTICLE, {
+	const { loading, error, data } = useQuery(GET_OBJECT, {
 		variables: {
 			id: id
 		}
@@ -30,7 +32,14 @@ function SinglePalace() {
 
 	if (loading) {
 		return (
-			<p>Loading...</p>
+			<div className="flex my-auto justify-center">
+				<Loader
+					type="TailSpin"
+					color="#00BFFF"
+					height={100}
+					width={100}
+				/>
+			</div>
 		)
 	}
 
@@ -47,7 +56,6 @@ function SinglePalace() {
 					<img src={fromImageToUrl(data.article.image)} alt="img" className='block object-cover w-full h-full' />
 					<div className="absolute top-[15%] left-[5%] -translate-x-[5%] md:left-[20%] md:-translate-x-[20%] -translate-y-[15%] max-w-[570px] flex flex-col gap-y-5 p-5">
 						{data?.article?.title && <h1 className='text-white uppercase font-extrabold'>{data?.article?.title}</h1>}
-						{/* <h4 className='text-white text-xl font-bold'>Алания, Каргыджак</h4> */}
 						{data?.article?.description && <p className='text-white text-xl'>{data?.article?.description}</p>}
 					</div>
 				</div>
@@ -57,9 +65,7 @@ function SinglePalace() {
 				<div className='max-w-6xl mx-auto px-4 py-10'>
 					<section>
 						{data?.article?.body && (
-							<ReactMarkdown>
-								{data?.article?.description}
-							</ReactMarkdown>
+							<ReactMarkdown rehypePlugins={[rehypeRaw]} children={data?.article?.body}/>
 						)}
 					</section>
 				</div>
