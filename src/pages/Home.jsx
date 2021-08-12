@@ -73,7 +73,7 @@ export default function Home() {
 					</section>
 				</div>
 				<section className="relative w-full h-[900px]" id='alanya'>
-					<div className="absolute top-0 bgcolor-about w-full h-full" ></div>
+					<div className="absolute left-0 top-0 bgcolor-about w-full h-full" ></div>
 					<img src={Alanya} alt="alanya" className='object-cover w-full h-full' />
 					<div className='absolute mx-auto md:left-0 right-0 text-left left-1/2 -translate-x-1/2 md:-translate-x-0 top-0 max-w-6xl sm:px-10 lg:px-4 py-32'>
 						<h1 className='text-white font-extrabold'>Алания это...</h1>
@@ -87,7 +87,7 @@ export default function Home() {
 						<div className="w-full">
 							<div className="uppercase text-4xl text-lightBlue font-bold">Новости</div>
 							<div className='grid grid-cols-1 md:grid-cols-2 pt-10 gap-y-6 gap-x-12'>
-								{data?.articles?.map(article => (
+								{data && data?.articles?.map(article => (
 									<GradientCard key={article.id} article={article} />
 								))}
 							</div>

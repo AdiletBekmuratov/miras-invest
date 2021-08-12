@@ -79,6 +79,14 @@
 		scroll-behavior: smooth;
 		scroll-padding-top: 116px;
 	}
+
+	html, body{
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden; 
+	}
 	
   h1 {
     @apply text-3xl font-bold md:text-5xl font-primary;

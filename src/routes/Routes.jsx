@@ -12,7 +12,7 @@ import Article from '@/pages/Article';
 export default function Routes() {
 	return (
 		<Router>
-			<div className='min-h-screen flex flex-col'>
+			<div className='min-h-screen flex flex-col justify-center w-screen'>
 				<Header />
 				<ScrollToTop>
 					<Switch>

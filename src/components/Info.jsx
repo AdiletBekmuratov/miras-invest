@@ -17,8 +17,8 @@ function Info() {
 			<section className="relative w-full h-[820px]">
 				<img src={Image} alt="background" className="object-cover w-full h-full" />
 				<img src={Image2} className="absolute right-52 top-20 hidden md:block" />
-				<div className='absolute mx-auto left-0 right-0 text-left -translate-x-0 top-0 max-w-6xl sm:px-10 lg:px-4 py-40'>
-					<div className="leading-[74px] md:leading-[104px] uppercase text-white text-5xl md:text-[85px] font-bold">
+				<div className='absolute mx-auto left-0 right-0 text-left -translate-x-0 top-0 max-w-6xl px-10 lg:px-4 py-40'>
+					<div className="sm:leading-[74px] md:leading-[104px] uppercase text-white text-3xl sm:text-5xl md:text-[85px] font-bold">
 						Инвестируй <br /> в надежность
 					</div>
 					<div className='mt-10'>
@@ -41,7 +41,7 @@ function Info() {
 				</div>
 
 				<section className='mt-10' id='services'>
-					<div className="w-[400px]">
+					<div className="sm:w-[400px]">
 						<p className="text-lightBlue font-bold text-2xl leading-[29px]">
 							Работаем сразу по нескольким направлениям:
 						</p>
@@ -64,7 +64,7 @@ function Info() {
 				</section>
 
 				<section className='mt-10 border-t-2 border-b-2 border-lightBlue py-10'>
-					<div className="w-[400px]">
+					<div className="sm:w-[400px]">
 						<p className="text-lightBlue font-bold text-2xl leading-[29px]">
 							Индивидуальный подход для каждого:
 						</p>

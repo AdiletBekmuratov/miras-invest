@@ -8,7 +8,7 @@ const Header = () => {
 	const [openMobile, setOpenMobile] = useState(false)
 
 	return (
-		<nav className="bg-white shadow-md z-50 p-5 sticky top-0">
+		<nav className="bg-white shadow-md z-50 p-5 sticky top-0 left-0">
 			<div className="max-w-6xl mx-auto px-4">
 				<div className="flex justify-between">
 					<div className="flex-shrink-0">
