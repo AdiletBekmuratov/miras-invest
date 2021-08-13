@@ -9,9 +9,10 @@ import { fromImageToUrl } from '../utils/imageURL'
 
 const GET_OBJECT = gql`
 query GetObject($id: ID!){
-		article(id: $id){
+		object(id: $id){
 			id
 			title
+			location
 			description
 			body
 			image{
@@ -54,8 +55,9 @@ function SinglePalace() {
 				<div className="inline-block relative w-full h-[418px]">
 					<div className='bg-black opacity-30 w-full h-full absolute top-0 left-0' />
 					<img src={fromImageToUrl(data.object.image)} alt="img" className='block object-cover w-full h-full' />
-					<div className="absolute top-[15%] left-[5%] -translate-x-[5%] md:left-[20%] md:-translate-x-[20%] -translate-y-[15%] max-w-[570px] flex flex-col gap-y-5 p-5">
+					<div className="absolute top-[10%] left-[5%] -translate-x-[5%] md:left-[20%] md:-translate-x-[20%] -translate-y-[10%] max-w-[570px] flex flex-col gap-y-5 p-5">
 						{data?.object?.title && <h1 className='text-white uppercase font-extrabold'>{data?.object?.title}</h1>}
+						{data?.object?.location && <h4 className='text-white text-xl font-bold'>{data?.object?.location}</h4>}
 						{data?.object?.description && <p className='text-white text-xl'>{data?.object?.description}</p>}
 					</div>
 				</div>

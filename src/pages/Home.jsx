@@ -1,8 +1,6 @@
 import React from 'react';
 import GradientCard from '@/components/GradientCard';
 import ObjectCard from '@/components/ObjectCard'
-import object1 from '/images/object1.png'
-import object2 from '/images/object2.png'
 import Alanya from '/images/alanya.png'
 import sun from '/images/sun.svg'
 import percentage from '/images/percentage.svg'
@@ -13,24 +11,57 @@ import Loader from 'react-loader-spinner';
 
 import { useTranslation } from "react-i18next";
 
-const ARTICLES = gql`
-	query GetArticles{
-  articles(limit:4, sort:"id:DESC"){
-    id
-    title
-    description
-    image{
-      url
-    }
+// const ARTICLES = gql`
+// 	query GetArticles{
+//   articles(limit:4, sort:"id:DESC"){
+//     id
+//     title
+//     description
+//     image{
+//       url
+//     }
+//   }
+// }`
+
+// const OBJECTS = gql`
+// 	query GetObjects{
+//   objects(limit:4, sort:"id:DESC"){
+//     id
+//     title
+// 		location
+//     image{
+//       url
+//     }
+//   }
+// }`
+
+const ARTICLES_OBJECTS = gql`
+	query GetArticlesAndObjects{
+		articles(limit:4, sort:"id:DESC"){
+			id
+			title
+			description
+			image{
+				url
+			}
+		}
+		objects(limit:4, sort:"id:DESC"){
+			id
+			title
+			location
+			image{
+				url
+			}
+		}
   }
-}`
+`
 
 export default function Home() {
 
 	const { t } = useTranslation();
-	const { loading, error, data } = useQuery(ARTICLES)
+	const { loading, error, data } = useQuery(ARTICLES_OBJECTS)
 
-	if (loading) {
+	if (loading || !data) {
 		return (
 			<div className="flex my-auto justify-center">
 				<Loader
@@ -61,8 +92,9 @@ export default function Home() {
 								<div className='border-b-4 border-lightBlue hidden md:block md:w-[55%]'></div>
 							</div>
 							<div className='grid grid-cols-1 md:grid-cols-2 pt-10 gap-y-6 gap-x-8'>
-								<ObjectCard title="Toprak palace" image={object2} loc="Алания, Каргыджак" />
-								<ObjectCard title="Toprak palace villas" image={object1} loc="Алания, Каргыджак" />
+								{data && data?.objects?.map((object) => (
+									<ObjectCard key={object.id} object={object} />
+								))}
 							</div>
 							<div className="bg-lightBlue rounded-xl mt-10 flex p-8 w-full">
 								<img src={percentage} />

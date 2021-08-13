@@ -8,21 +8,19 @@ const client = new ApolloClient({
 	cache: new InMemoryCache()
 })
 
-const LoaderWrapper = () => (
-	<div className="flex my-auto justify-center">
-		<Loader
-			type="TailSpin"
-			color="#00BFFF"
-			height={100}
-			width={100}
-		/>
-	</div>
-)
-
 export default function App() {
 	return (
 		<ApolloProvider client={client}>
-			<Suspense fallback={LoaderWrapper}>
+			<Suspense fallback={
+				<div className="flex my-auto justify-center">
+					<Loader
+						type="TailSpin"
+						color="#00BFFF"
+						height={100}
+						width={100}
+					/>
+				</div>
+			}>
 				<Routes />
 			</Suspense>
 		</ApolloProvider>

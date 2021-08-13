@@ -54,7 +54,7 @@ function Article() {
 				<div className="inline-block relative w-full h-[418px]">
 					<div className='bg-black opacity-30 w-full h-full absolute top-0 left-0' />
 					<img src={fromImageToUrl(data.article.image)} alt="img" className='block object-cover w-full h-full' />
-					<div className="absolute top-[15%] left-[5%] -translate-x-[5%] md:left-[20%] md:-translate-x-[20%] -translate-y-[15%] max-w-[570px] flex flex-col gap-y-5 p-5">
+					<div className="absolute top-[10%] left-[5%] -translate-x-[5%] md:left-[20%] md:-translate-x-[20%] -translate-y-[10%] max-w-[570px] flex flex-col gap-y-5 p-5">
 						{data?.article?.title && <h1 className='text-white uppercase font-extrabold'>{data?.article?.title}</h1>}
 						{data?.article?.description && <p className='text-white text-xl'>{data?.article?.description}</p>}
 					</div>
