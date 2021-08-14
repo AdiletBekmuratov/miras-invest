@@ -1,10 +1,11 @@
 import React, { Suspense } from 'react';
 import Routes from '@/routes/Routes';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
+import { API_URL } from '@/utils/imageURL';
 import Loader from 'react-loader-spinner';
 
 const client = new ApolloClient({
-	uri: 'http://localhost:1337/graphql',
+	uri: `${API_URL}/graphql`,
 	cache: new InMemoryCache()
 })
 

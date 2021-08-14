@@ -2,13 +2,14 @@ import React, { useState } from 'react'
 import Logo from '/images/logo.svg'
 import toast, { Toaster } from 'react-hot-toast'
 import { useTranslation } from "react-i18next";
+import { API_URL } from '@/utils/imageURL';
 
 function ContactUs() {
 	const [loading, setLoading] = useState(false)
 	const { t } = useTranslation()
 
 	const postForm = (data) => {
-		return fetch('http://localhost:1337/contacts', {
+		return fetch(`${API_URL}/contacts`, {
 			method: 'POST',
 			mode: 'cors',
 			cache: 'no-cache',

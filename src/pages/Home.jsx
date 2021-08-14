@@ -10,7 +10,6 @@ import { useQuery, gql } from '@apollo/client'
 import Loader from 'react-loader-spinner';
 
 import { useTranslation } from "react-i18next";
-import { Link } from 'react-router-dom';
 
 const ARTICLES_OBJECTS = gql`
 	query GetArticlesAndObjects($locale: String!){
