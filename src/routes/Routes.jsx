@@ -9,6 +9,7 @@ import SinglePalace from '@/pages/SinglePalace';
 import ScrollToTop from '../utils/ScrollToTop';
 import Article from '@/pages/Article';
 import News from '@/pages/News';
+import Objects from '@/pages/Objects';
 
 export default function Routes() {
 	return (
@@ -22,6 +23,7 @@ export default function Routes() {
 						<Route exact path='/articles/article/:id' component={Article} />
 						<Route exact path='/objects/object/:id' component={SinglePalace} />
 						<Route path='/articles/:id' component={News} />
+						<Route path='/objects/:id' component={Objects} />
 					</Switch>
 				</ScrollToTop>
 				<Footer />

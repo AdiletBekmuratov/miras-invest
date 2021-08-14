@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { fromImageToUrl } from '../utils/imageURL'
 
-function ObjectCard({object:{ id, image, title, location }}) {
+function ObjectCard({ object: { id, image, title, location } }) {
 	return (
 		<Link to={`/objects/object/${id}`} className='w-full h-[310x] relative hover:scale-105 transition duration-300 ease-out cursor-pointer'>
 			<div className="bgcolor opacity-90 absolute w-full h-full top-0 left-0"></div>

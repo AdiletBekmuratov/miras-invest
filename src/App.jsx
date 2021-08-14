@@ -12,7 +12,7 @@ export default function App() {
 	return (
 		<ApolloProvider client={client}>
 			<Suspense fallback={
-				<div className="flex my-auto justify-center">
+				<div className="flex min-h-screen items-center justify-center">
 					<Loader
 						type="TailSpin"
 						color="#00BFFF"

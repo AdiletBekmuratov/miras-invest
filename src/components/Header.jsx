@@ -48,11 +48,11 @@ const Header = () => {
 
 					<div className="hidden md:flex items-center lg:space-x-8 md:space-x-4 space-x-2 py-4">
 						<NavLink to='/' className="text-gray-500 uppercase hover:text-lightBlue transition duration-300 text-sm lg:text-base whitespace-nowrap">{t('main')}</NavLink>
-						<NavLink to='/about' className="text-gray-500 uppercase hover:text-lightBlue transition duration-300 text-sm lg:text-base whitespace-nowrap">{t('about_us')}</NavLink>
-						<NavHashLink activeClassName='font-semibold' activeStyle={{ color: '#22BFEA' }} smooth to='/#objects' className="text-gray-500 uppercase hover:text-lightBlue transition duration-300 text-sm lg:text-base whitespace-nowrap">{t('objects')}</NavHashLink>
+						<NavLink activeClassName='font-semibold' activeStyle={{ color: '#22BFEA' }} to='/about' className="text-gray-500 uppercase hover:text-lightBlue transition duration-300 text-sm lg:text-base whitespace-nowrap">{t('about_us')}</NavLink>
 						<NavHashLink activeClassName='font-semibold' activeStyle={{ color: '#22BFEA' }} smooth to='/#services' className="text-gray-500 uppercase hover:text-lightBlue transition duration-300 text-sm lg:text-base whitespace-nowrap">{t('service')}</NavHashLink>
-						<NavHashLink activeClassName='font-semibold' activeStyle={{ color: '#22BFEA' }} smooth to='/#news' className="text-gray-500 uppercase hover:text-lightBlue transition duration-300 text-sm lg:text-base whitespace-nowrap">{t('news')}</NavHashLink>
 						<NavHashLink activeClassName='font-semibold' activeStyle={{ color: '#22BFEA' }} smooth to='/#alanya' className="text-gray-500 uppercase hover:text-lightBlue transition duration-300 text-sm lg:text-base whitespace-nowrap">{t('about_alanya')}</NavHashLink>
+						<NavLink activeClassName='font-semibold' activeStyle={{ color: '#22BFEA' }} to='/objects/1' className="text-gray-500 uppercase hover:text-lightBlue transition duration-300 text-sm lg:text-base whitespace-nowrap">{t('objects')}</NavLink>
+						<NavLink activeClassName='font-semibold' activeStyle={{ color: '#22BFEA' }} to='/articles/1' className="text-gray-500 uppercase hover:text-lightBlue transition duration-300 text-sm lg:text-base whitespace-nowrap">{t('news')}</NavLink>
 
 						<div className='w-full'>
 							<div className="dropdown relative">

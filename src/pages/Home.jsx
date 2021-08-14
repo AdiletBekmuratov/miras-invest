@@ -10,6 +10,7 @@ import { useQuery, gql } from '@apollo/client'
 import Loader from 'react-loader-spinner';
 
 import { useTranslation } from "react-i18next";
+import { Link } from 'react-router-dom';
 
 const ARTICLES_OBJECTS = gql`
 	query GetArticlesAndObjects($locale: String!){
@@ -41,24 +42,13 @@ export default function Home() {
 		}
 	})
 
-	if (loading || !data) {
+	if (error) {
 		return (
-			<div className="flex my-auto justify-center">
-				<Loader
-					type="TailSpin"
-					color="#00BFFF"
-					height={100}
-					width={100}
-				/>
-			</div>
+			<p>Error</p>
 		)
 	}
 
-	if (error) {
-		return (
-			<p>Error: {error}</p>
-		)
-	}
+	console.log(data);
 
 	return (
 		<>
@@ -71,11 +61,30 @@ export default function Home() {
 								<div className="uppercase text-5xl text-lightBlue font-semibold"> {t('our_obj')}  </div>
 								<div className='border-b-4 border-lightBlue hidden md:block md:w-[55%]'></div>
 							</div>
-							<div className='grid grid-cols-1 md:grid-cols-2 pt-10 gap-y-6 gap-x-8'>
-								{data && data?.objects?.map((object) => (
-									<ObjectCard key={object.id} object={object} />
-								))}
-							</div>
+							{
+								(loading) ?
+									(
+										<div className="flex h-40 justify-center items-center">
+											<Loader
+												type="Grid"
+												color="#00BFFF"
+												height={100}
+												width={100}
+											/>
+										</div>
+									) : (data.objects.length <= 0) ? (
+										<div className="flex pt-10 justify-center">
+											<h4 className='text-lightBlue'>No data available</h4>
+										</div>
+									) :
+										(
+											<div className='grid grid-cols-1 md:grid-cols-2 pt-10 gap-y-6 gap-x-8'>
+												{data && data?.objects?.map((object) => (
+													<ObjectCard key={object.id} object={object} />
+												))}
+											</div>
+										)
+							}
 							<div className="bg-lightBlue rounded-xl mt-10 flex p-8 w-full">
 								<img src={percentage} />
 								<p className='text-white md:text-2xl ml-8'>{t('percentage')}</p>
@@ -101,11 +110,32 @@ export default function Home() {
 					<section id='news'>
 						<div className="w-full">
 							<div className="uppercase text-4xl text-lightBlue font-bold">Новости</div>
-							<div className='grid grid-cols-1 md:grid-cols-2 pt-10 gap-y-6 gap-x-12'>
-								{data && data?.articles?.map(article => (
-									<GradientCard key={article.id} article={article} />
-								))}
-							</div>
+							{
+								(loading || !data) ?
+									(
+										<div className="flex h-40 justify-center items-center">
+											<Loader
+												type="Grid"
+												color="#00BFFF"
+												height={100}
+												width={100}
+											/>
+										</div>
+									) : (data.articles.length <= 0) ? (
+										<div className="flex pt-10 justify-center">
+											<h4 className='text-lightBlue'>No data available</h4>
+										</div>
+									) :
+										(
+											<div className='grid grid-cols-1 md:grid-cols-2 pt-10 gap-y-6 gap-x-12'>
+												{
+													data && data?.articles?.map(article => (
+														<GradientCard key={article.id} article={article} />
+													))
+												}
+											</div>
+										)
+							}
 						</div>
 					</section>
 				</div>
