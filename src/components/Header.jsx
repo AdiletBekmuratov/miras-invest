@@ -60,7 +60,7 @@ const Header = () => {
 									<Flag country={language} />
 									<svg className="fill-current h-4 w-4 ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /> </svg>
 								</button>
-								<ul className="dropdown-menu absolute hidden text-gray-400 pt-2 w-full ">
+								<ul className="dropdown-menu absolute hidden text-gray-400 pt-2 w-full">
 									{languages.map(({ code, country_code }) => (
 										<li className='flex bg-gray-200 hover:bg-gray-400 py-2 px-2 justify-center whitespace-no-wrap cursor-pointer' key={country_code}>
 											<Flag country={country_code} onClick={() => { i18next.changeLanguage(code) }} />

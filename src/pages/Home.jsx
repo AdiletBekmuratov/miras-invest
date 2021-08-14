@@ -11,33 +11,9 @@ import Loader from 'react-loader-spinner';
 
 import { useTranslation } from "react-i18next";
 
-// const ARTICLES = gql`
-// 	query GetArticles{
-//   articles(limit:4, sort:"id:DESC"){
-//     id
-//     title
-//     description
-//     image{
-//       url
-//     }
-//   }
-// }`
-
-// const OBJECTS = gql`
-// 	query GetObjects{
-//   objects(limit:4, sort:"id:DESC"){
-//     id
-//     title
-// 		location
-//     image{
-//       url
-//     }
-//   }
-// }`
-
 const ARTICLES_OBJECTS = gql`
-	query GetArticlesAndObjects{
-		articles(limit:4, sort:"id:DESC"){
+	query GetArticlesAndObjects($locale: String!){
+		articles(limit:4, sort:"published_at:DESC", locale: $locale){
 			id
 			title
 			description
@@ -45,7 +21,7 @@ const ARTICLES_OBJECTS = gql`
 				url
 			}
 		}
-		objects(limit:4, sort:"id:DESC"){
+		objects(limit:4, sort:"published_at:DESC", locale: $locale){
 			id
 			title
 			location
@@ -58,8 +34,12 @@ const ARTICLES_OBJECTS = gql`
 
 export default function Home() {
 
-	const { t } = useTranslation();
-	const { loading, error, data } = useQuery(ARTICLES_OBJECTS)
+	const { t, i18n } = useTranslation();
+	const { loading, error, data } = useQuery(ARTICLES_OBJECTS, {
+		variables: {
+			locale: i18n.language === 'kz' ? 'kk' : i18n.language
+		}
+	})
 
 	if (loading || !data) {
 		return (

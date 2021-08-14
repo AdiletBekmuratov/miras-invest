@@ -11,7 +11,8 @@ import DollarAndUserIcon from '/images/dollarAndUser.svg'
 import BadgeCard from './BadgeCard'
 import ContactUsHome from './ContactUsHome'
 
-import { useTranslation, initReactI18next } from "react-i18next";
+import { useTranslation } from "react-i18next";
+import { HashLink } from 'react-router-hash-link'
 
 
 function Info() {
@@ -26,9 +27,9 @@ function Info() {
 						{t('invest')} <br /> {t('in_reability')}
 					</div>
 					<div className='mt-10'>
-						<a href='#contactUs' className="bg-darkerBlue h-[60px] w-[200px] px-8 py-4 shadow-xl rounded-md text-2xl text-white cursor-pointer">
+						<HashLink to='/#contactUs' smooth className="bg-darkerBlue h-[60px] w-[200px] px-8 py-4 shadow-xl rounded-md text-2xl text-white cursor-pointer">
 							{t('arrange')}
-						</a>
+						</HashLink>
 					</div>
 				</div>
 			</section>

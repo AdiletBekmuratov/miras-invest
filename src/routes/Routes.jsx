@@ -13,7 +13,7 @@ import News from '@/pages/News';
 export default function Routes() {
 	return (
 		<Router>
-			<div className='min-h-screen flex flex-col justify-center w-screen'>
+			<div className='min-h-screen flex flex-col justify-center'>
 				<Header />
 				<ScrollToTop>
 					<Switch>

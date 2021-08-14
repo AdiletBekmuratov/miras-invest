@@ -6,10 +6,11 @@ import Loader from 'react-loader-spinner';
 import 'rc-pagination/assets/index.css'
 import { useHistory, useParams } from 'react-router';
 import {ChevronLeftIcon, ChevronRightIcon, ChevronDoubleLeftIcon, ChevronDoubleRightIcon} from '@heroicons/react/outline'
+import { useTranslation } from 'react-i18next';
 
 const ARTICLES = gql`
-	query GetArticles($limit: Int!, $start: Int!){
-		articles(limit: $limit, start: $start, sort:"id:DESC"){
+	query GetArticles($limit: Int!, $start: Int!, $locale: String!){
+		articles(limit: $limit, start: $start, sort:"published_at:DESC", locale: $locale){
 			id
 			title
 			description
@@ -17,20 +18,27 @@ const ARTICLES = gql`
 			image{
 				url
 			}
-			created_at
+			published_at
 		}
-		articlesCount
+		articlesConnection(where: {	locale: $locale }) {
+			aggregate {
+				count
+			}
+		}
 	}`
 
 function News() {
 	const { id } = useParams()
 	const history = useHistory();
-	const [offset, setOffset] = useState(3)
+	const [offset, setOffset] = useState(4)
+
+	const { i18n } = useTranslation()
 
 	const { error, loading, data, fetchMore } = useQuery(ARTICLES, {
 		variables: {
 			start: (parseInt(id) - 1) * offset,
-			limit: offset
+			limit: offset,
+			locale: i18n.language === 'kz' ? 'kk' : i18n.language
 		},
 		notifyOnNetworkStatusChange: true,
 	});
@@ -81,7 +89,7 @@ function News() {
 				</div>
 
 				<div className='mt-10 flex justify-center'>
-					<Pagination pageSize={offset} total={data && data.articlesCount} onChange={handlePaginate} current={parseInt(id)} locale='' 
+					<Pagination pageSize={offset} total={data && data.articlesConnection.aggregate.count} onChange={handlePaginate} current={parseInt(id)} locale='' 
 					prevIcon={ChevronLeftIcon} nextIcon={ChevronRightIcon} jumpPrevIcon={ChevronDoubleLeftIcon} jumpNextIcon={ChevronDoubleRightIcon}/>
 				</div>
 
