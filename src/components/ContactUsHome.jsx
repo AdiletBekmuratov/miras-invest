@@ -1,8 +1,6 @@
 import React from 'react'
 import Logo from '/images/logo.svg'
-import { useTranslation, initReactI18next } from "react-i18next";
-
-
+import { useTranslation } from "react-i18next";
 
 function ContactUsHome() {
 
