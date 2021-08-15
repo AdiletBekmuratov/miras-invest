@@ -9,6 +9,7 @@ export const fromImageToUrl = (image) => {
 	}
 
 	if(image.url.indexOf('/') === 0){
+		console.log(`${API_URL}${image.url}`);
 		return `${API_URL}${image.url}`
 	}
 

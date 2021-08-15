@@ -2,10 +2,9 @@ import ContactUs from '@/components/ContactUs'
 import { useQuery, gql } from '@apollo/client'
 import React from 'react'
 import Loader from 'react-loader-spinner'
-import ReactMarkdown from 'react-markdown'
 import { useParams } from 'react-router'
-import rehypeRaw from 'rehype-raw'
-import { fromImageToUrl } from '../utils/imageURL'
+import { fromImageToUrl } from '@/utils/imageURL'
+import Markdown from 'markdown-to-jsx';
 
 const GET_ARTICLE = gql`
 query GetArticle($id: ID!){
@@ -43,6 +42,8 @@ function Article() {
 		)
 	}
 
+	console.log(data);
+
 	if (error) {
 		return (
 			<p>Error: {error}</p>
@@ -52,14 +53,14 @@ function Article() {
 		<>
 			<section>
 				<div className="w-full h-[418px]" style={{
-					backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${fromImageToUrl(data.object.image)})`,
+					backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${fromImageToUrl(data.article && data.article.image)})`,
 					backgroundRepeat: 'no-repeat',
 					backgroundPosition: 'center',
 					backgroundSize: 'cover',
 				}}>
 					<div className="container lg:max-w-6xl mx-auto flex flex-col pt-20 gap-y-5 p-5 z-10">
-						{data?.object?.title && <h1 className='text-white uppercase font-extrabold'>{data?.object?.title}</h1>}
-						{data?.object?.description && <p className='text-white text-xl max-w-[570px]'>{data?.object?.description}</p>}
+						{data?.article?.title && <h1 className='text-white uppercase font-extrabold'>{data?.article?.title}</h1>}
+						{data?.article?.description && <p className='text-white text-xl max-w-[570px]'>{data?.article?.description}</p>}
 					</div>
 				</div>
 			</section>
@@ -68,7 +69,9 @@ function Article() {
 				<div className='max-w-6xl mx-auto px-4 py-10'>
 					<section>
 						{data?.article?.body && (
-							<ReactMarkdown rehypePlugins={[rehypeRaw]} children={data?.article?.body} />
+							<Markdown>
+								{data?.article?.body}
+							</Markdown>
 						)}
 					</section>
 				</div>

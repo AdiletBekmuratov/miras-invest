@@ -2,10 +2,9 @@ import ContactUs from '@/components/ContactUs'
 import { useQuery, gql } from '@apollo/client'
 import React from 'react'
 import Loader from 'react-loader-spinner'
-import ReactMarkdown from 'react-markdown'
 import { useParams } from 'react-router'
-import rehypeRaw from 'rehype-raw'
-import { fromImageToUrl } from '../utils/imageURL'
+import { fromImageToUrl } from '@/utils/imageURL'
+import Markdown from 'markdown-to-jsx'
 
 const GET_OBJECT = gql`
 query GetObject($id: ID!){
@@ -44,6 +43,8 @@ function SinglePalace() {
 		)
 	}
 
+	console.log(data);
+
 	if (error) {
 		return (
 			<p>Error: {error}</p>
@@ -53,7 +54,7 @@ function SinglePalace() {
 		<>
 			<section>
 				<div className="w-full h-[418px]" style={{
-					backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${fromImageToUrl(data.object.image)})`,
+					backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${fromImageToUrl(data.object && data.object.image)})`,
 					backgroundRepeat: 'no-repeat',
 					backgroundPosition: 'center',
 					backgroundSize: 'cover',
@@ -70,7 +71,9 @@ function SinglePalace() {
 				<div className='max-w-6xl mx-auto px-4 py-10'>
 					<section>
 						{data?.object?.body && (
-							<ReactMarkdown rehypePlugins={[rehypeRaw]} children={data?.object?.body} />
+							<Markdown>
+								{data?.object?.body}
+							</Markdown>
 						)}
 					</section>
 				</div>
