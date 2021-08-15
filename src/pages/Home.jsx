@@ -79,7 +79,7 @@ export default function Home() {
 										</div>
 									) : (data.objects.length <= 0) ? (
 										<div className="flex pt-10 justify-center">
-											<h4 className='text-lightBlue'>No data available</h4>
+											<h4 className='text-lightBlue'> {t('no_data')} </h4>
 										</div>
 									) :
 										(
@@ -118,7 +118,7 @@ export default function Home() {
 				<div className='max-w-6xl mx-auto px-4 py-10'>
 					<section id='news'>
 						<div className="w-full">
-							<div className="uppercase text-4xl text-lightBlue font-bold" data-aos="fade-right">Новости</div>
+							<div className="uppercase text-4xl text-lightBlue font-bold" data-aos="fade-right">{t('news')}</div>
 							{
 								(loading || !data) ?
 									(
@@ -132,7 +132,7 @@ export default function Home() {
 										</div>
 									) : (data.articles.length <= 0) ? (
 										<div className="flex pt-10 justify-center">
-											<h4 className='text-lightBlue'>No data available</h4>
+											<h4 className='text-lightBlue'>{t('no_data')}</h4>
 										</div>
 									) :
 										(

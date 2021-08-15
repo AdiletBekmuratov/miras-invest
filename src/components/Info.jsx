@@ -18,7 +18,7 @@ function Info() {
 
 	return (
 		<>
-			<section className="w-full h-[820px]" style={{
+			<section className="w-full h-[500px] sm:h-[820px]" style={{
 				backgroundImage: `url(${PUBLIC_URL}/images/main.jpg)`,
 				backgroundRepeat: 'no-repeat',
 				backgroundPosition: 'center',

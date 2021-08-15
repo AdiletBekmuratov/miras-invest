@@ -24,7 +24,6 @@ const languages = [
 ]
 
 const Header = () => {
-
 	const { t, i18n } = useTranslation()
 	const [openMobile, setOpenMobile] = useState(false)
 	const [language, setLanguage] = useState("RU")
@@ -51,15 +50,14 @@ const Header = () => {
 						</NavLink>
 					</div>
 
-					<div className="hidden md:flex items-center lg:space-x-8 md:space-x-4 space-x-2 py-4">
+					<div className="hidden md:flex items-center lg:gap-x-8 md:gap-x-4 gap-x-2 flex-wrap">
 						<NavLink to='/' className="text-gray-500 uppercase hover:text-lightBlue transition duration-300 text-sm lg:text-base whitespace-nowrap">{t('main')}</NavLink>
 						<NavLink activeClassName='font-semibold' activeStyle={{ color: '#22BFEA' }} to='/about' className="text-gray-500 uppercase hover:text-lightBlue transition duration-300 text-sm lg:text-base whitespace-nowrap">{t('about_us')}</NavLink>
 						<NavHashLink activeClassName='font-semibold' activeStyle={{ color: '#22BFEA' }} smooth to='/#services' className="text-gray-500 uppercase hover:text-lightBlue transition duration-300 text-sm lg:text-base whitespace-nowrap">{t('service')}</NavHashLink>
 						<NavHashLink activeClassName='font-semibold' activeStyle={{ color: '#22BFEA' }} smooth to='/#alanya' className="text-gray-500 uppercase hover:text-lightBlue transition duration-300 text-sm lg:text-base whitespace-nowrap">{t('about_alanya')}</NavHashLink>
 						<NavLink activeClassName='font-semibold' activeStyle={{ color: '#22BFEA' }} to='/objects/1' className="text-gray-500 uppercase hover:text-lightBlue transition duration-300 text-sm lg:text-base whitespace-nowrap">{t('objects')}</NavLink>
 						<NavLink activeClassName='font-semibold' activeStyle={{ color: '#22BFEA' }} to='/articles/1' className="text-gray-500 uppercase hover:text-lightBlue transition duration-300 text-sm lg:text-base whitespace-nowrap">{t('news')}</NavLink>
-
-						<div className='w-full'>
+						<div>
 							<div className="dropdown relative">
 								<button className=" text-gray-700 font-semibold flex rounded items-center justify-between">
 									<Flag country={language} />

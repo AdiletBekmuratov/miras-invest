@@ -30,7 +30,7 @@ function News() {
 	const history = useHistory();
 	const [offset, setOffset] = useState(12)
 
-	const { i18n } = useTranslation()
+	const { t, i18n } = useTranslation()
 
 	const { error, loading, data, fetchMore } = useQuery(ARTICLES, {
 		variables: {
@@ -81,7 +81,7 @@ function News() {
 		<main className='bg-white'>
 			<div className='max-w-6xl mx-auto px-4 py-10'>
 				<div>
-					<h1>Все Новости</h1>
+					<h1>{t('all_news')}</h1>
 				</div>
 				<div className='grid grid-cols-1 md:grid-cols-3 pt-10 gap-y-6 gap-x-12'>
 					{data && data?.articles?.map(article => (
