@@ -36,6 +36,11 @@ const Header = () => {
 		}
 	}, [i18n.language])
 
+	const handleMobileSelector = (event) => {
+		console.log(event.target.value);
+		i18next.changeLanguage(event.target.value)
+	}
+
 	return (
 		<nav className="bg-white shadow-md z-50 p-5 sticky top-0 left-0">
 			<div className="max-w-6xl mx-auto px-4">
@@ -62,9 +67,9 @@ const Header = () => {
 								</button>
 								<ul className="dropdown-menu absolute hidden text-gray-400 pt-2 w-full">
 									{languages.map(({ code, country_code }) => (
-										<li className='flex bg-gray-200 hover:bg-gray-400 py-2 px-2 justify-center whitespace-no-wrap cursor-pointer' key={country_code}>
-											<Flag country={country_code} onClick={() => { i18next.changeLanguage(code) }} />
-										</li>))}
+										<button className='flex bg-gray-200 hover:bg-gray-400 py-2 px-2 justify-center whitespace-no-wrap cursor-pointer disabled:hover:bg-gray-300 disabled:bg-gray-300 disabled:cursor-not-allowed' disabled={(i18n.language === 'en' && country_code === 'US') || i18n.language.toUpperCase() === country_code} onClick={() => { i18next.changeLanguage(code) }} key={country_code}>
+											<Flag country={country_code} />
+										</button>))}
 								</ul>
 							</div>
 						</div>
@@ -89,6 +94,15 @@ const Header = () => {
 			</div>
 			<div className={`${openMobile ? 'block' : 'hidden'} mobile-menu`}>
 				<ul className='list-none'>
+					<li>
+						<div className="relative inline-block w-full text-gray-700 my-4 ">
+							<select className="w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 border rounded-lg appearance-none focus:shadow-outline" value={i18n.language} onChange={handleMobileSelector}>
+								<option value="en">English</option>
+								<option value="kz">Қазақша</option>
+								<option value="ru">Русский</option>
+							</select>
+						</div>
+					</li>
 					<li><NavLink to='/' className="block text-sm px-2 py-4 hover:text-lightBlue transition duration-300 uppercase" onClick={() => setOpenMobile(false)} >{t('main')}</NavLink></li>
 					<li><NavLink to='/about' className="block text-sm px-2 py-4 hover:text-lightBlue transition duration-300 uppercase" onClick={() => setOpenMobile(false)} >{t('about_us')}</NavLink></li>
 					<li><NavHashLink smooth to='/#objects' className="block text-sm px-2 py-4 hover:text-lightBlue transition duration-300 uppercase" onClick={() => setOpenMobile(false)} >{t('objects')}</NavHashLink></li>

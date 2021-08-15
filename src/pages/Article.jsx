@@ -21,6 +21,31 @@ query GetArticle($id: ID!){
 	}
 `
 
+const options = {
+	overrides: {
+		a: {
+			props: {
+				className: 'text-lightBlue hover:underline',
+			},
+		},
+		ul: {
+			props: {
+				className: 'list-disc list-inside ml-4'
+			}
+		},
+		ol: {
+			props: {
+				className: 'list-decimal list-inside ml-4'
+			}
+		},
+		blockquote: {
+			props: {
+				className: 'relative p-4 text-xl italic border-l-4 bg-neutral-100 text-neutral-600 border-neutral-500 quote'
+			}
+		}
+	},
+}
+
 function Article() {
 	const { id } = useParams()
 	const { loading, error, data } = useQuery(GET_ARTICLE, {
@@ -41,8 +66,6 @@ function Article() {
 			</div>
 		)
 	}
-
-	console.log(data);
 
 	if (error) {
 		return (
@@ -70,7 +93,7 @@ function Article() {
 				<div className='max-w-6xl mx-auto px-4 py-10'>
 					<section>
 						{data?.article?.body && (
-							<Markdown>
+							<Markdown options={options}>
 								{data?.article?.body}
 							</Markdown>
 						)}
