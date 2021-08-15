@@ -57,6 +57,7 @@ function Article() {
 					backgroundRepeat: 'no-repeat',
 					backgroundPosition: 'center',
 					backgroundSize: 'cover',
+					width: '100%',
 				}}>
 					<div className="container lg:max-w-6xl mx-auto flex flex-col pt-20 gap-y-5 p-5 z-10">
 						{data?.article?.title && <h1 className='text-white uppercase font-extrabold'>{data?.article?.title}</h1>}

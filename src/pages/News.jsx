@@ -80,7 +80,10 @@ function News() {
 	return (
 		<main className='bg-white'>
 			<div className='max-w-6xl mx-auto px-4 py-10'>
-				<div className='grid grid-cols-1 md:grid-cols-2 pt-10 gap-y-6 gap-x-12'>
+				<div>
+					<h1>Все Новости</h1>
+				</div>
+				<div className='grid grid-cols-1 md:grid-cols-3 pt-10 gap-y-6 gap-x-12'>
 					{data && data?.articles?.map(article => (
 						<GradientCard key={article.id} article={article} />
 					))}

@@ -23,6 +23,7 @@ function Info() {
 				backgroundRepeat: 'no-repeat',
 				backgroundPosition: 'center',
 				backgroundSize: 'cover',
+				width: '100%',
 			}}>
 				<div className='container lg:max-w-6xl mx-auto px-10 lg:px-4 py-40 relative' data-aos="fade-right">
 					<div className="sm:leading-[74px] md:leading-[104px] uppercase text-white text-3xl sm:text-5xl md:text-[85px] font-bold">

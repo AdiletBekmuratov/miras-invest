@@ -14,7 +14,7 @@ import { PUBLIC_URL } from '@/utils/imageURL';
 
 const ARTICLES_OBJECTS = gql`
 	query GetArticlesAndObjects($locale: String!){
-		articles(limit:4, sort:"published_at:DESC", locale: $locale){
+		articles(limit:3, sort:"published_at:DESC", locale: $locale){
 			id
 			title
 			description
@@ -106,6 +106,7 @@ export default function Home() {
 					backgroundRepeat: 'no-repeat',
 					backgroundPosition: 'center',
 					backgroundSize: 'cover',
+					width: '100%',
 				}}>
 					<div className='container lg:max-w-6xl mx-auto px-4 py-32' data-aos="fade-right">
 						<h1 className='text-white font-extrabold'>{t('alanya_is')}</h1>
@@ -135,7 +136,7 @@ export default function Home() {
 										</div>
 									) :
 										(
-											<div className='grid grid-cols-1 md:grid-cols-2 pt-10 gap-y-6 gap-x-12'>
+											<div className='grid grid-cols-1 md:grid-cols-3 pt-10 gap-y-6 gap-x-12'>
 												{
 													data && data?.articles?.map(article => (
 														<GradientCard key={article.id} article={article} aos='fade-up' />

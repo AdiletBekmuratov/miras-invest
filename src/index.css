@@ -124,6 +124,10 @@
     max-width: 68.75rem;
     @apply w-11/12 mx-auto;
   }
+
+	.card-hover {
+		@apply hover:scale-105 transition duration-300 ease-out !important
+	}
 }
 
 .footer{

@@ -80,6 +80,9 @@ function Objects() {
 	return (
 		<main className='bg-white'>
 			<div className='max-w-6xl mx-auto px-4 py-10'>
+				<div>
+					<h1>Все Объекты</h1>
+				</div>
 				<div className='grid grid-cols-1 md:grid-cols-2 pt-10 gap-y-6 gap-x-12'>
 					{data && data?.objects?.map(object => (
 						<ObjectCard key={object.id} object={object} />

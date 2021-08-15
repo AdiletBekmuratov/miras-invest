@@ -69,7 +69,7 @@ function ContactUs({ aos }) {
 									<img src={Logo} alt="logo" height={55} />
 								</div>
 							</div>
-							<div>
+							<div className="mb-8">
 								<h4 className="mb-4">Наши контактные данные</h4>
 								<p className="flex items-center">
 									<img src={Phone} alt="phone-icon1" className="h-4 w-4 mr-2" />

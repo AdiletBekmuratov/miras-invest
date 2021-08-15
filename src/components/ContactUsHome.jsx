@@ -45,7 +45,7 @@ function ContactUsHome() {
 		<div>
 			<div className='max-w-6xl mx-auto'>
 				<div className="flex flex-col md:flex-row">
-					<div className="w-full md:w-6/12">
+					<div className="w-full mb-8 md:w-6/12">
 						<h1 className="font-bold text-4xl mb-4"> {t('fill')} </h1>
 						<p className="text-3xl">{t('comming_time')}</p>
 					</div>
