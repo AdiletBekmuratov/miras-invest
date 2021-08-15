@@ -4,7 +4,7 @@ import Pagination from 'rc-pagination';
 import Loader from 'react-loader-spinner';
 import 'rc-pagination/assets/index.css'
 import { useHistory, useParams } from 'react-router';
-import { ChevronLeftIcon, ChevronRightIcon, ChevronDoubleLeftIcon, ChevronDoubleRightIcon } from '@heroicons/react/outline'
+import { left, leftDouble, right, rightDouble } from '@/components/Icons';
 import { useTranslation } from 'react-i18next';
 import ObjectCard from '@/components/ObjectCard';
 
@@ -58,7 +58,7 @@ function Objects() {
 		history.push(`/objects/${current}`)
 	}
 
-	if (loading || !data) {
+	if (loading) {
 		return (
 			<div className="flex my-auto justify-center">
 				<Loader
@@ -88,10 +88,8 @@ function Objects() {
 
 				<div className='mt-10 flex justify-center'>
 					<Pagination pageSize={offset} total={data && data.objectsConnection.aggregate.count} onChange={handlePaginate} current={parseInt(id)} locale=''
-						prevIcon={ChevronLeftIcon} nextIcon={ChevronRightIcon} jumpPrevIcon={ChevronDoubleLeftIcon} jumpNextIcon={ChevronDoubleRightIcon} />
+						prevIcon={left} nextIcon={right} jumpPrevIcon={leftDouble} jumpNextIcon={rightDouble} />
 				</div>
-
-
 			</div>
 		</main>
 

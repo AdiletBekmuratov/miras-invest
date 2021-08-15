@@ -5,7 +5,7 @@ import GradientCard from '@/components/GradientCard';
 import Loader from 'react-loader-spinner';
 import 'rc-pagination/assets/index.css'
 import { useHistory, useParams } from 'react-router';
-import { ChevronLeftIcon, ChevronRightIcon, ChevronDoubleLeftIcon, ChevronDoubleRightIcon } from '@heroicons/react/outline'
+import { left, leftDouble, right, rightDouble } from '@/components/Icons';
 import { useTranslation } from 'react-i18next';
 
 const ARTICLES = gql`
@@ -88,7 +88,7 @@ function News() {
 
 				<div className='mt-10 flex justify-center'>
 					<Pagination pageSize={offset} total={data && data.articlesConnection.aggregate.count} onChange={handlePaginate} current={parseInt(id)} locale=''
-						prevIcon={ChevronLeftIcon} nextIcon={ChevronRightIcon} jumpPrevIcon={ChevronDoubleLeftIcon} jumpNextIcon={ChevronDoubleRightIcon} />
+						prevIcon={left} nextIcon={right} jumpPrevIcon={leftDouble} jumpNextIcon={rightDouble} />
 				</div>
 
 

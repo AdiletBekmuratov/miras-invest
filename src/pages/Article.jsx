@@ -50,13 +50,16 @@ function Article() {
 	}
 	return (
 		<>
-			<section className='relative'>
-				<div className="inline-block relative w-full h-[418px]">
-					<div className='bg-black opacity-30 w-full h-full absolute top-0 left-0' />
-					<img src={fromImageToUrl(data.article.image)} alt="img" className='block object-cover w-full h-full' />
-					<div className="absolute top-[10%] left-[5%] -translate-x-[5%] md:left-[20%] md:-translate-x-[20%] -translate-y-[10%] max-w-[570px] flex flex-col gap-y-5 p-5">
-						{data?.article?.title && <h1 className='text-white uppercase font-extrabold'>{data?.article?.title}</h1>}
-						{data?.article?.description && <p className='text-white text-xl'>{data?.article?.description}</p>}
+			<section>
+				<div className="w-full h-[418px]" style={{
+					backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${fromImageToUrl(data.object.image)})`,
+					backgroundRepeat: 'no-repeat',
+					backgroundPosition: 'center',
+					backgroundSize: 'cover',
+				}}>
+					<div className="container lg:max-w-6xl mx-auto flex flex-col pt-20 gap-y-5 p-5 z-10">
+						{data?.object?.title && <h1 className='text-white uppercase font-extrabold'>{data?.object?.title}</h1>}
+						{data?.object?.description && <p className='text-white text-xl max-w-[570px]'>{data?.object?.description}</p>}
 					</div>
 				</div>
 			</section>
