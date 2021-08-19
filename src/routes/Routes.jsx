@@ -12,6 +12,7 @@ import News from '@/pages/News';
 import Objects from '@/pages/Objects';
 import { Toaster } from 'react-hot-toast';
 import NotFound from '@/pages/NotFound';
+import Object from '@/pages/Object';
 
 export default function Routes() {
 	return (
@@ -24,7 +25,7 @@ export default function Routes() {
 						<Route exact path='/' component={Home} />
 						<Route exact path='/about' component={About} />
 						<Route path='/articles/article/:id' component={Article} />
-						<Route path='/objects/object/:id' component={SinglePalace} />
+						<Route path='/objects/object/:id' component={Object} />
 						<Route path='/articles/:id' component={News} />
 						<Route path='/objects/:id' component={Objects} />
 						<Route component={NotFound} />

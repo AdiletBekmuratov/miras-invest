@@ -2,12 +2,14 @@ import React from 'react'
 import Image1 from '/images/about1.png'
 import Image2 from '/images/about2.png'
 import { useTranslation } from "react-i18next";
+import { Helmet } from 'react-helmet-async';
 
 
 function About() {
 	const { t } = useTranslation()
 	return (
 		<>
+			<Helmet title="О нас" meta={[{ "name": "description", "content": "Компания Mirasinvest был основан в мае 2021 года. Но, не смотря на это, уже успела завоевать доверие рынка и начала сотрудничать с крупными застройщиками Турции." }]} />
 			<main className='bg-white'>
 				<div className='max-w-6xl mx-auto px-4 py-10'>
 					<section>

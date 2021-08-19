@@ -5,6 +5,7 @@ import Loader from 'react-loader-spinner'
 import { useParams } from 'react-router'
 import { fromImageToUrl } from '@/utils/imageURL'
 import Markdown from 'markdown-to-jsx'
+import { Helmet } from 'react-helmet-async'
 
 const GET_OBJECT = gql`
 query GetObject($id: ID!){
@@ -75,6 +76,7 @@ function SinglePalace() {
 	}
 	return (
 		<>
+			<Helmet title={data?.object?.title} meta={[{ "name": "description", "content": data?.object?.description }]} />
 			<section>
 				<div className="w-full h-[418px]" style={{
 					backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${fromImageToUrl(data.object && data.object.image)})`,

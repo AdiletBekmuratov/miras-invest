@@ -7,6 +7,7 @@ import { useHistory, useParams } from 'react-router';
 import { left, leftDouble, right, rightDouble } from '@/components/Icons';
 import { useTranslation } from 'react-i18next';
 import ObjectCard from '@/components/ObjectCard';
+import { Helmet } from 'react-helmet-async';
 
 const OBJECTS = gql`
 	query GetObjects($limit: Int!, $start: Int!, $locale: String!){
@@ -79,6 +80,7 @@ function Objects() {
 
 	return (
 		<main className='bg-white'>
+			<Helmet title="Все Объекты" meta={[{ "name": "description", "content": "Все объекты MIRAS INVEST" }]} />
 			<div className='max-w-6xl mx-auto px-4 py-10'>
 				<div>
 					<h1>{t('all_objects')}</h1>

@@ -1,11 +1,11 @@
-import Logo from '/images/logo.svg'
+import placeholder from '/images/main.jpg'
 
-export const API_URL = import.meta.env.VITE_APP_API_URL
-export const PUBLIC_URL = import.meta.env.VITE_APP_PUBLIC_URL
+export const API_URL = "http://localhost:1337"
+export const PUBLIC_URL = "http://localhost:3000"
 
 export const fromImageToUrl = (image) => {
 	if(!image){
-		return Logo
+		return placeholder
 	}
 
 	if(image.url.indexOf('/') === 0){

@@ -12,7 +12,7 @@ ReactDOM.render(
 		<HelmetProvider>
 			<Helmet
 				defaultTitle='MIRAS INVEST'
-				titleTemplate='%s | Главная'
+				titleTemplate='%s | MIRAS INVEST'
 			>
 				<meta charSet='utf-8' />
 				<html lang='id' amp />

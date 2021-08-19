@@ -105,8 +105,8 @@ const Header = () => {
 					<li><NavLink to='/about' className="block text-sm px-2 py-4 hover:text-lightBlue transition duration-300 uppercase" onClick={() => setOpenMobile(false)} >{t('about_us')}</NavLink></li>
 					<li><NavHashLink smooth to='/#objects' className="block text-sm px-2 py-4 hover:text-lightBlue transition duration-300 uppercase" onClick={() => setOpenMobile(false)} >{t('objects')}</NavHashLink></li>
 					<li><NavHashLink smooth to='/#services' className="block text-sm px-2 py-4 hover:text-lightBlue transition duration-300 uppercase" onClick={() => setOpenMobile(false)} >{t('service')}</NavHashLink></li>
-					<li><NavHashLink smooth to='/#news' className="block text-sm px-2 py-4 hover:text-lightBlue transition duration-300 uppercase" onClick={() => setOpenMobile(false)} >{t('news')}</NavHashLink></li>
-					<li><NavHashLink smooth to='/#alanya' className="block text-sm px-2 py-4 hover:text-lightBlue transition duration-300 uppercase" onClick={() => setOpenMobile(false)} >{t('about_alanya')}</NavHashLink></li>
+					<li><NavLink to='/articles/1' className="block text-sm px-2 py-4 hover:text-lightBlue transition duration-300 uppercase" onClick={() => setOpenMobile(false)} >{t('news')}</NavLink></li>
+					<li><NavLink to='/objects/1' className="block text-sm px-2 py-4 hover:text-lightBlue transition duration-300 uppercase" onClick={() => setOpenMobile(false)} >{t('about_alanya')}</NavLink></li>
 				</ul>
 			</div>
 		</nav>

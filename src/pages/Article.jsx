@@ -5,6 +5,7 @@ import Loader from 'react-loader-spinner'
 import { useParams } from 'react-router'
 import { fromImageToUrl } from '@/utils/imageURL'
 import Markdown from 'markdown-to-jsx';
+import { Helmet } from 'react-helmet-async'
 
 const GET_ARTICLE = gql`
 query GetArticle($id: ID!){
@@ -74,6 +75,7 @@ function Article() {
 	}
 	return (
 		<>
+			<Helmet title={data?.article?.title} meta={[{ "name": "description", "content": data?.article?.description }]} />
 			<section>
 				<div className="w-full h-[418px]" style={{
 					backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${fromImageToUrl(data.article && data.article.image)})`,

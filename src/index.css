@@ -138,6 +138,14 @@
   background: linear-gradient(90.08deg, #0D3B73 0.07%, rgba(10, 120, 255, 0) 99.94%);
 }
 
+.bgcolor-lightblue {
+	background: linear-gradient(90deg, #22BFEA 50%, #22BFEA 50%, #ffffff 50.1%, #ffffff 100%);
+}
+
+.bgcolor-lightblue-reverse {
+	background: linear-gradient(90deg, #ffffff 50%, #ffffff 50%, #22BFEA 50.1%, #22BFEA 100%);
+}
+
 .dropdown:hover .dropdown-menu {
   display: block;
 }

@@ -11,6 +11,7 @@ import AOS from 'aos';
 import "aos/dist/aos.css";
 import { useTranslation } from "react-i18next";
 import { PUBLIC_URL } from '@/utils/imageURL';
+import { Helmet } from 'react-helmet-async';
 
 const ARTICLES_OBJECTS = gql`
 	query GetArticlesAndObjects($locale: String!){
@@ -57,6 +58,7 @@ export default function Home() {
 
 	return (
 		<>
+			<Helmet title="Главная" meta={[{ "name": "description", "content": "Miras Invest - агентство на рынке недвижимости в Алании. Обращаясь к нам по вопросам покупки или продажи жилья, вы получаете полное сопровождение. C нами максимально комфортен поиск и выбор жилья в турецкой ривьере." }]} />
 			<main className='bg-white'>
 				<Info />
 				<div className='max-w-6xl mx-auto px-4 py-10'>
