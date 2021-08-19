@@ -84,9 +84,9 @@ function Article() {
 					backgroundSize: 'cover',
 					width: '100%',
 				}}>
-					<div className="container lg:max-w-6xl mx-auto flex flex-col pt-20 gap-y-5 p-5 z-10">
+					<div className="container lg:max-w-6xl mx-auto flex flex-col pt-20 p-5 z-10">
 						{data?.article?.title && <h1 className='text-white uppercase font-extrabold'>{data?.article?.title}</h1>}
-						{data?.article?.description && <p className='text-white text-xl max-w-[570px]'>{data?.article?.description}</p>}
+						{data?.article?.description && <p className='text-white text-xl max-w-[570px] mt-5'>{data?.article?.description}</p>}
 					</div>
 				</div>
 			</section>

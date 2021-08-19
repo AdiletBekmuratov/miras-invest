@@ -1,7 +1,7 @@
 import placeholder from '/images/main.jpg'
 
-export const API_URL = "http://localhost:1337"
-export const PUBLIC_URL = "http://localhost:3000"
+export const API_URL = "https://strapi-miras-demo.herokuapp.com"
+export const PUBLIC_URL = "https://www.miras-invest.com"
 
 export const fromImageToUrl = (image) => {
 	if(!image){

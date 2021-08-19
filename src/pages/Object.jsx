@@ -119,10 +119,10 @@ function Object() {
 						backgroundSize: 'cover',
 						width: '100%',
 					}}>
-						<div className="container lg:max-w-6xl mx-auto flex flex-col pt-20 gap-y-5 p-5 z-10">
+						<div className="container lg:max-w-6xl mx-auto flex flex-col pt-20 p-5 z-10">
 							{data?.object?.title && <h1 className='text-white uppercase font-extrabold'>{data?.object?.title}</h1>}
-							{data?.object?.location && <h4 className='text-white text-xl font-bold'>{data?.object?.location}</h4>}
-							{data?.object?.description && <p className='text-white text-xl max-w-[570px]'>{data?.object?.description}</p>}
+							{data?.object?.location && <h4 className='text-white text-xl font-bold mt-5'>{data?.object?.location}</h4>}
+							{data?.object?.description && <p className='text-white text-xl max-w-[570px] mt-5'>{data?.object?.description}</p>}
 						</div>
 					</div>
 				</section>
@@ -158,47 +158,47 @@ function Object() {
 				}
 
 				<section className="container lg:max-w-6xl mx-auto px-4 py-10 bg-white">
-					<div className="flex justify-start items-center flex-wrap gap-6">
+					<div className="flex justify-start items-center flex-wrap space-x-6 space-y-6">
 						{data?.object?.architecture && (
-							<div className="flex justify-start items-center gap-x-6">
+							<div className="flex justify-start items-center">
 								<img src={ArchitectureIcon} alt="ArchitectureIcon" className="h-16 w-16 object-cover" />
-								<p className="text-lg md:text-2xl max-w-[440px]">{data?.object?.architecture}</p>
+								<p className="text-lg md:text-2xl max-w-[440px] ml-6">{data?.object?.architecture}</p>
 							</div>
 						)}
 						{data?.object?.swimming_pool && (
-							<div className="flex justify-start items-center gap-x-6">
+							<div className="flex justify-start items-center">
 								<img src={SwimPoolIcon} alt="SwimPoolIcon" className="h-16 w-16 object-cover" />
-								<p className="text-lg md:text-2xl max-w-[440px]">{data?.object?.swimming_pool}</p>
+								<p className="text-lg md:text-2xl max-w-[440px] ml-6">{data?.object?.swimming_pool}</p>
 							</div>
 						)}
 						{data?.object?.parking && (
-							<div className="flex justify-start items-center gap-x-6">
+							<div className="flex justify-start items-center">
 								<img src={ParkingIcon} alt="ParkingIcon" className="h-16 w-16 object-cover" />
-								<p className="text-lg md:text-2xl max-w-[440px]">{data?.object?.parking}</p>
+								<p className="text-lg md:text-2xl max-w-[440px] ml-6">{data?.object?.parking}</p>
 							</div>
 						)}
 						{data?.object?.smart_house && (
-							<div className="flex justify-start items-center gap-x-6">
+							<div className="flex justify-start items-center">
 								<img src={Smart_HouseIcon} alt="Smart_HouseIcon" className="h-16 w-16 object-cover" />
-								<p className="text-lg md:text-2xl max-w-[440px]">{data?.object?.smart_house}</p>
+								<p className="text-lg md:text-2xl max-w-[440px] ml-6">{data?.object?.smart_house}</p>
 							</div>
 						)}
 						{data?.object?.underfloor_heating && (
-							<div className="flex justify-start items-center gap-x-6">
+							<div className="flex justify-start items-center">
 								<img src={UnderfloorHeatingIcon} alt="UnderfloorHeatingIcon" className="h-16 w-16 object-cover" />
-								<p className="text-lg md:text-2xl max-w-[440px]">{data?.object?.underfloor_heating}</p>
+								<p className="text-lg md:text-2xl max-w-[440px] ml-6">{data?.object?.underfloor_heating}</p>
 							</div>
 						)}
 						{data?.object?.appliances && (
-							<div className="flex justify-start items-center gap-x-6">
+							<div className="flex justify-start items-center">
 								<img src={AppliancesIcon} alt="AppliancesIcon" className="h-16 w-16 object-cover" />
-								<p className="text-lg md:text-2xl max-w-[440px]">{data?.object?.appliances}</p>
+								<p className="text-lg md:text-2xl max-w-[440px] ml-6">{data?.object?.appliances}</p>
 							</div>
 						)}
 						{data?.object?.choices && (
-							<div className="flex justify-start items-center gap-x-6">
+							<div className="flex justify-start items-center">
 								<img src={ChoicesIcon} alt="ChoicesIcon" className="h-16 w-16 object-cover" />
-								<p className="text-lg md:text-2xl max-w-[440px]">{data?.object?.choices}</p>
+								<p className="text-lg md:text-2xl max-w-[440px] ml-6">{data?.object?.choices}</p>
 							</div>
 						)}
 					</div>

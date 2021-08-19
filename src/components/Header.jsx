@@ -50,7 +50,7 @@ const Header = () => {
 						</NavLink>
 					</div>
 
-					<div className="hidden md:flex items-center lg:gap-x-8 md:gap-x-4 gap-x-2 flex-wrap">
+					<div className="hidden md:flex items-center lg:space-x-8 md:space-x-4 space-x-2 flex-wrap">
 						<NavLink to='/' className="text-gray-500 uppercase hover:text-lightBlue transition duration-300 text-sm lg:text-base whitespace-nowrap">{t('main')}</NavLink>
 						<NavLink activeClassName='font-semibold' activeStyle={{ color: '#22BFEA' }} to='/about' className="text-gray-500 uppercase hover:text-lightBlue transition duration-300 text-sm lg:text-base whitespace-nowrap">{t('about_us')}</NavLink>
 						<NavHashLink activeClassName='font-semibold' activeStyle={{ color: '#22BFEA' }} smooth to='/#services' className="text-gray-500 uppercase hover:text-lightBlue transition duration-300 text-sm lg:text-base whitespace-nowrap">{t('service')}</NavHashLink>

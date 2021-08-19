@@ -85,10 +85,10 @@ function SinglePalace() {
 					backgroundSize: 'cover',
 					width: '100%',
 				}}>
-					<div className="container lg:max-w-6xl mx-auto flex flex-col pt-20 gap-y-5 p-5 z-10">
+					<div className="container lg:max-w-6xl mx-auto flex flex-col pt-20 p-5 z-10">
 						{data?.object?.title && <h1 className='text-white uppercase font-extrabold'>{data?.object?.title}</h1>}
-						{data?.object?.location && <h4 className='text-white text-xl font-bold'>{data?.object?.location}</h4>}
-						{data?.object?.description && <p className='text-white text-xl max-w-[570px]'>{data?.object?.description}</p>}
+						{data?.object?.location && <h4 className='text-white text-xl font-bold mt-5'>{data?.object?.location}</h4>}
+						{data?.object?.description && <p className='text-white text-xl max-w-[570px] mt-5'>{data?.object?.description}</p>}
 					</div>
 				</div>
 			</section>
