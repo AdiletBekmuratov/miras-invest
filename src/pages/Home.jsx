@@ -5,43 +5,30 @@ import sun from '/images/sun.svg'
 import percentage from '/images/percentage.svg'
 import Info from '@/components/Info';
 import ContactUs from '@/components/ContactUs';
-import { useQuery, gql } from '@apollo/client'
+import { useQuery } from 'react-query';
 import Loader from 'react-loader-spinner';
 import AOS from 'aos';
 import "aos/dist/aos.css";
 import { useTranslation } from "react-i18next";
-import { PUBLIC_URL } from '@/utils/imageURL';
+import { PUBLIC_URL, API_URL } from '@/utils/imageURL';
 import { Helmet } from 'react-helmet-async';
+import axios from 'axios';
 
-const ARTICLES_OBJECTS = gql`
-	query GetArticlesAndObjects($locale: String!){
-		articles(limit:3, sort:"published_at:DESC", locale: $locale){
-			id
-			title
-			description
-			image{
-				url
-			}
-		}
-		objects(limit:4, sort:"published_at:DESC", locale: $locale){
-			id
-			title
-			location
-			image{
-				url
-			}
-		}
-  }
-`
+const fetchPlaces = async () => {
+	const { data } = await axios.get(`${API_URL}/api/places?limit=4`)
+	return data
+}
+
+const fetchArticles = async () => {
+	const { data } = await axios.get(`${API_URL}/api/articles?limit=4`)
+	return data
+}
 
 export default function Home() {
 
-	const { t, i18n } = useTranslation();
-	const { loading, error, data } = useQuery(ARTICLES_OBJECTS, {
-		variables: {
-			locale: i18n.language === 'kz' ? 'kk' : i18n.language
-		}
-	})
+	const { t } = useTranslation();
+	const { isLoading: isLoadingPlaces, error: errorPlaces, data: dataPlaces } = useQuery('places', fetchPlaces)
+	const { isLoading: isLoadingArticles, error: errorArticles, data: dataArticles } = useQuery('articles', fetchArticles)
 
 	useEffect(() => {
 		AOS.init({
@@ -50,7 +37,7 @@ export default function Home() {
 		});
 	}, [])
 
-	if (error) {
+	if (errorPlaces || errorArticles) {
 		return (
 			<p>Error</p>
 		)
@@ -69,7 +56,7 @@ export default function Home() {
 								<div className='border-b-4 border-lightBlue hidden md:block md:w-[55%]' data-aos="fade-left"></div>
 							</div>
 							{
-								(loading) ?
+								(isLoadingPlaces) ?
 									(
 										<div className="flex h-40 justify-center items-center">
 											<Loader
@@ -79,14 +66,14 @@ export default function Home() {
 												width={100}
 											/>
 										</div>
-									) : (data.objects.length <= 0) ? (
+									) : (dataPlaces.length <= 0) ? (
 										<div className="flex pt-10 justify-center">
 											<h4 className='text-lightBlue'> {t('no_data')} </h4>
 										</div>
 									) :
 										(
 											<div className='grid grid-cols-1 md:grid-cols-2 pt-10 gap-y-6 gap-x-8'>
-												{data && data?.objects?.map((object) => (
+												{dataPlaces && dataPlaces?.map((object) => (
 													<ObjectCard key={object.id} object={object} aos="fade-up" />
 												))}
 											</div>
@@ -122,7 +109,7 @@ export default function Home() {
 						<div className="w-full">
 							<div className="uppercase text-4xl text-lightBlue font-bold" data-aos="fade-right">{t('news')}</div>
 							{
-								(loading || !data) ?
+								(isLoadingArticles) ?
 									(
 										<div className="flex h-40 justify-center items-center">
 											<Loader
@@ -132,7 +119,7 @@ export default function Home() {
 												width={100}
 											/>
 										</div>
-									) : (data.articles.length <= 0) ? (
+									) : (dataArticles.length <= 0) ? (
 										<div className="flex pt-10 justify-center">
 											<h4 className='text-lightBlue'>{t('no_data')}</h4>
 										</div>
@@ -140,7 +127,7 @@ export default function Home() {
 										(
 											<div className='grid grid-cols-1 md:grid-cols-3 pt-10 gap-y-6 gap-x-12'>
 												{
-													data && data?.articles?.map(article => (
+													dataArticles && dataArticles?.map(article => (
 														<GradientCard key={article.id} article={article} aos='fade-up' />
 													))
 												}

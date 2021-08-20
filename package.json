@@ -10,6 +10,7 @@
     "@apollo/client": "^3.4.7",
     "@tailwindcss/forms": "^0.3.2",
     "aos": "^2.3.4",
+    "axios": "^0.21.1",
     "graphql": "^15.5.1",
     "i18next": "^20.4.0",
     "i18next-browser-languagedetector": "^6.1.2",
@@ -23,6 +24,7 @@
     "react-hot-toast": "^2.1.0",
     "react-i18next": "^11.11.4",
     "react-loader-spinner": "^4.0.0",
+    "react-query": "^3.19.6",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-router-hash-link": "^2.4.3"

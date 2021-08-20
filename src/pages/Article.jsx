@@ -1,26 +1,14 @@
 import ContactUs from '@/components/ContactUs'
-import { useQuery, gql } from '@apollo/client'
 import React from 'react'
 import Loader from 'react-loader-spinner'
 import { useParams } from 'react-router'
 import { fromImageToUrl } from '@/utils/imageURL'
 import Markdown from 'markdown-to-jsx';
 import { Helmet } from 'react-helmet-async'
-
-const GET_ARTICLE = gql`
-query GetArticle($id: ID!){
-		article(id: $id){
-			id
-			title
-			description
-			body
-			image{
-				url
-			}
-			created_at
-		}
-	}
-`
+import { useQuery } from 'react-query'
+import i18next from 'i18next'
+import { API_URL } from '@/utils/imageURL'
+import axios from 'axios'
 
 const options = {
 	overrides: {
@@ -47,15 +35,17 @@ const options = {
 	},
 }
 
+const fetchArticle = async ({ queryKey }) => {
+	const [_key, { id }] = queryKey
+	const { data } = await axios.get(`${API_URL}/api/articles/${id}`)
+	return data
+}
+
 function Article() {
 	const { id } = useParams()
-	const { loading, error, data } = useQuery(GET_ARTICLE, {
-		variables: {
-			id: id
-		}
-	})
+	const { isLoading, error, data } = useQuery(['article', { id }], fetchArticle)
 
-	if (loading) {
+	if (isLoading) {
 		return (
 			<div className="flex my-auto justify-center">
 				<Loader
@@ -75,18 +65,23 @@ function Article() {
 	}
 	return (
 		<>
-			<Helmet title={data?.article?.title} meta={[{ "name": "description", "content": data?.article?.description }]} />
+			<Helmet title={i18next.language === 'en' ? data?.title_en : i18next.language === 'ru' ? data.title_ru : data.title_kz} meta={[{ "name": "description", "content": data?.article?.description }]} />
 			<section>
 				<div className="w-full h-[418px]" style={{
-					backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${fromImageToUrl(data.article && data.article.image)})`,
+					backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${fromImageToUrl(data && data.image)})`,
 					backgroundRepeat: 'no-repeat',
 					backgroundPosition: 'center',
 					backgroundSize: 'cover',
 					width: '100%',
 				}}>
 					<div className="container lg:max-w-6xl mx-auto flex flex-col pt-20 p-5 z-10">
-						{data?.article?.title && <h1 className='text-white uppercase font-extrabold'>{data?.article?.title}</h1>}
-						{data?.article?.description && <p className='text-white text-xl max-w-[570px] mt-5'>{data?.article?.description}</p>}
+						<h1 className='text-white uppercase font-extrabold'>
+							{i18next.language === 'en' ? data?.title_en : i18next.language === 'ru' ? data?.title_ru : data?.title_kz}
+						</h1>
+
+						<p className='text-white text-xl max-w-[570px] mt-5'>
+							{i18next.language === 'en' ? data?.description_en : i18next.language === 'ru' ? data?.description_ru : data?.description_kz}
+						</p>
 					</div>
 				</div>
 			</section>
@@ -94,14 +89,11 @@ function Article() {
 			<main className='bg-white'>
 				<div className='max-w-6xl mx-auto px-4 py-10'>
 					<section>
-						{data?.article?.body && (
-							<Markdown options={options}>
-								{data?.article?.body}
-							</Markdown>
-						)}
+						<Markdown options={options}>
+							{i18next.language === 'en' ? data?.body_en : i18next.language === 'ru' ? data?.body_ru : data?.body_kz}
+						</Markdown>
 					</section>
 				</div>
-
 				<ContactUs />
 			</main>
 		</>

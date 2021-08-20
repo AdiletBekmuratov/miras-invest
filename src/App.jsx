@@ -1,17 +1,16 @@
 import React, { Suspense } from 'react';
 import Routes from '@/routes/Routes';
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
-import { API_URL } from '@/utils/imageURL';
+import {
+	QueryClient,
+	QueryClientProvider,
+} from 'react-query'
 import Loader from 'react-loader-spinner';
 
-const client = new ApolloClient({
-	uri: `${API_URL}/graphql`,
-	cache: new InMemoryCache()
-})
+const queryClient = new QueryClient()
 
 export default function App() {
 	return (
-		<ApolloProvider client={client}>
+		<QueryClientProvider client={queryClient}>
 			<Suspense fallback={
 				<div className="flex min-h-screen items-center justify-center">
 					<Loader
@@ -24,6 +23,6 @@ export default function App() {
 			}>
 				<Routes />
 			</Suspense>
-		</ApolloProvider>
+		</QueryClientProvider>
 	)
 }
