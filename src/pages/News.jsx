@@ -1,4 +1,3 @@
-import { gql, useQuery } from '@apollo/client'
 import React, { useState } from 'react'
 import Pagination from 'rc-pagination';
 import GradientCard from '@/components/GradientCard';
@@ -8,23 +7,15 @@ import { useHistory, useParams } from 'react-router';
 import { left, leftDouble, right, rightDouble } from '@/components/Icons';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet-async';
+import { useQuery, useQueryClient } from 'react-query';
+import axios from 'axios';
+import { API_URL } from '@/utils/imageURL';
 
-const ARTICLES = gql`
-	query GetArticles($limit: Int!, $start: Int!, $locale: String!){
-		articles(limit: $limit, start: $start, sort:"published_at:DESC", locale: $locale){
-			id
-			title
-			description
-			image{
-				url
-			}
-		}
-		articlesConnection(where: {	locale: $locale }) {
-			aggregate {
-				count
-			}
-		}
-	}`
+const fetchArticles = async ({queryKey}) => {
+	const [_key, { id }] = queryKey
+	const { data } = await axios.get(`${API_URL}/api/articles?page=${id}`)
+	return data
+}
 
 function News() {
 	const { id } = useParams()
@@ -32,34 +23,15 @@ function News() {
 	const [offset, setOffset] = useState(12)
 
 	const { t, i18n } = useTranslation()
+	const queryClient = useQueryClient()
+	const { error, isLoading, data, isFetching, isPreviousData } = useQuery(['articles', {id}], fetchArticles, { keepPreviousData: true, staleTime: 5000 });
 
-	const { error, loading, data, fetchMore } = useQuery(ARTICLES, {
-		variables: {
-			start: (parseInt(id) - 1) * offset,
-			limit: offset,
-			locale: i18n.language === 'kz' ? 'kk' : i18n.language
-		},
-		notifyOnNetworkStatusChange: true,
-	});
-
-	const handlePaginate = (current, pageSize) => {
-
-		fetchMore({
-			variables: {
-				start: (current - 1) * offset
-			},
-			updateQuery: (prev, { fetchMoreResult }) => {
-				if (!fetchMoreResult) return prev;
-				return Object.assign({}, prev, {
-					articles: [...fetchMoreResult.articles]
-				});
-			}
-		})
-
+	const handlePaginate = (current) => {
 		history.push(`/articles/${current}`)
+		queryClient.prefetchQuery(['projects', {id}], fetchArticles)
 	}
 
-	if (loading || !data) {
+	if (isLoading || isFetching) {
 		return (
 			<div className="flex my-auto justify-center">
 				<Loader
@@ -86,16 +58,15 @@ function News() {
 					<h1>{t('all_news')}</h1>
 				</div>
 				<div className='grid grid-cols-1 md:grid-cols-3 pt-10 gap-y-6 gap-x-12'>
-					{data && data?.articles?.map(article => (
+					{data && data?.data?.map(article => (
 						<GradientCard key={article.id} article={article} />
 					))}
 				</div>
 
 				<div className='mt-10 flex justify-center'>
-					<Pagination pageSize={offset} total={data && data.articlesConnection.aggregate.count} onChange={handlePaginate} current={parseInt(id)} locale=''
+					<Pagination pageSize={offset} total={data && data.total} onChange={handlePaginate} current={parseInt(id)} locale=''
 						prevIcon={left} nextIcon={right} jumpPrevIcon={leftDouble} jumpNextIcon={rightDouble} />
 				</div>
-
 
 			</div>
 		</main>
