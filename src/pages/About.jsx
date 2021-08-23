@@ -9,11 +9,11 @@ function About() {
 	const { t } = useTranslation()
 	return (
 		<>
-			<Helmet title="О нас" meta={[{ "name": "description", "content": "Компания Mirasinvest был основан в мае 2021 года. Но, не смотря на это, уже успела завоевать доверие рынка и начала сотрудничать с крупными застройщиками Турции." }]} />
+			<Helmet title={t('about_us')} meta={[{ "name": "description", "content": "Компания Mirasinvest был основан в мае 2021 года. Но, не смотря на это, уже успела завоевать доверие рынка и начала сотрудничать с крупными застройщиками Турции." }]} />
 			<main className='bg-white'>
 				<div className='max-w-6xl mx-auto px-4 py-10'>
 					<section>
-						<h1 className='text-lightBlue text-2xl font-extrabold pl-8 lg:w-[870px]'>
+						<h1 className='text-hTextBlue text-2xl font-extrabold pl-8 lg:w-[870px]'>
 							{t('comp')}
 							<br />
 							{t('but')}

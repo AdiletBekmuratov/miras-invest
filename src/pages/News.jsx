@@ -11,7 +11,7 @@ import { useQuery, useQueryClient } from 'react-query';
 import axios from 'axios';
 import { API_URL } from '@/utils/imageURL';
 
-const fetchArticles = async ({queryKey}) => {
+const fetchArticles = async ({ queryKey }) => {
 	const [_key, { id }] = queryKey
 	const { data } = await axios.get(`${API_URL}/api/articles?page=${id}`)
 	return data
@@ -24,11 +24,11 @@ function News() {
 
 	const { t, i18n } = useTranslation()
 	const queryClient = useQueryClient()
-	const { error, isLoading, data, isFetching, isPreviousData } = useQuery(['articles', {id}], fetchArticles, { keepPreviousData: true, staleTime: 5000 });
+	const { error, isLoading, data, isFetching, isPreviousData } = useQuery(['articles', { id }], fetchArticles, { keepPreviousData: true, staleTime: 5000 });
 
 	const handlePaginate = (current) => {
 		history.push(`/articles/${current}`)
-		queryClient.prefetchQuery(['projects', {id}], fetchArticles)
+		queryClient.prefetchQuery(['projects', { id }], fetchArticles)
 	}
 
 	if (isLoading || isFetching) {
@@ -52,10 +52,10 @@ function News() {
 
 	return (
 		<main className='bg-white'>
-			<Helmet title="Все Новости" meta={[{ "name": "description", "content": "Все последние и актуальные новости на сайте MIRAS INVEST" }]} />
+			<Helmet title={t('all_news')} meta={[{ "name": "description", "content": "Все последние и актуальные новости на сайте MIRAS INVEST" }]} />
 			<div className='max-w-6xl mx-auto px-4 py-10'>
 				<div>
-					<h1 className="text-lightBlue">{t('all_news')}</h1>
+					<h1>{t('all_news')}</h1>
 				</div>
 				<div className='grid grid-cols-1 md:grid-cols-3 pt-10 gap-y-6 gap-x-12'>
 					{data && data?.data?.map(article => (
@@ -75,4 +75,3 @@ function News() {
 }
 
 export default News
-

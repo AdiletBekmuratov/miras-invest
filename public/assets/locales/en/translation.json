@@ -2,12 +2,12 @@
 	"invest": "Invest",
 	"in_reability": "in reability",
 	"arrange": "Arrange",
-	"main": "main",
-	"about_us": "about us",
-	"objects": "objects",
-	"service": "services",
-	"news": "news",
-	"about_alanya": "about alanya",
+	"main": "Main",
+	"about_us": "About us",
+	"objects": "Objects",
+	"service": "Services",
+	"news": "News",
+	"about_alanya": "About alanya",
 	"miras": "Miras Invest - is a real estate agency in Alanya. When you contact us regarding the purchase or sale of housing, you get full support. With us, the search and selection of housing in the Turkish Riviera is as comfortable as possible.",
 	"working": "We work in several directions at once:",
 	"text1_1": "Legal support of transactions for the purchase and sale of housing at all stages - from search, execution of an agreement to keys and a document on ownership of real estate.",
@@ -40,5 +40,6 @@
 	"rights": "All rights reserved.",
 	"contacts": "Our contact details",
 	"all_news": "All News",
-	"all_objects": "All Objects"
+	"all_objects": "All Objects",
+	"not_found": "Page not found"
 }
