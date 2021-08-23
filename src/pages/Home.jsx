@@ -13,6 +13,7 @@ import { useTranslation } from "react-i18next";
 import { PUBLIC_URL, API_URL } from '@/utils/imageURL';
 import { Helmet } from 'react-helmet-async';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const fetchPlaces = async () => {
 	const { data } = await axios.get(`${API_URL}/api/places?limit=4`)
@@ -20,7 +21,7 @@ const fetchPlaces = async () => {
 }
 
 const fetchArticles = async () => {
-	const { data } = await axios.get(`${API_URL}/api/articles?limit=4`)
+	const { data } = await axios.get(`${API_URL}/api/articles?limit=3`)
 	return data
 }
 
@@ -52,7 +53,7 @@ export default function Home() {
 					<section id='objects'>
 						<div className="w-full">
 							<div className='flex justify-between'>
-								<div className="uppercase text-5xl text-lightBlue font-semibold" data-aos="fade-right"> {t('our_obj')}</div>
+								<Link to='/objects/1' className="uppercase text-5xl text-lightBlue font-semibold underline-hover" data-aos="fade-right"> {t('our_obj')}</Link>
 								<div className='border-b-4 border-lightBlue hidden md:block md:w-[55%]' data-aos="fade-left"></div>
 							</div>
 							{
@@ -90,16 +91,16 @@ export default function Home() {
 						</div>
 					</section>
 				</div>
-				<section className="w-full h-[500px] sm:h-[900px]" id='alanya' style={{
-					backgroundImage: `linear-gradient(90.08deg, #0D3B73 0.07%, rgba(10, 120, 255, 0) 99.94%), url(${PUBLIC_URL}/images/alanya.png)`,
+				<section className="w-full h-[500px] md:h-[700px]" id='alanya' style={{
+					backgroundImage: `linear-gradient(90deg, #22BFEA 0.07%, rgba(10, 120, 255, 0) 80%), url(${PUBLIC_URL}/images/alanya.png)`,
 					backgroundRepeat: 'no-repeat',
 					backgroundPosition: 'center',
 					backgroundSize: 'cover',
 					width: '100%',
 				}}>
-					<div className='container lg:max-w-6xl mx-auto px-4 py-32' data-aos="fade-right">
+					<div className='container lg:max-w-6xl mx-auto px-4 py-16 md:py-32' data-aos="fade-right">
 						<h1 className='text-white font-extrabold'>{t('alanya_is')}</h1>
-						<p className='text-white text-justify text-sm sm:text-base md:text-2xl w-full md:w-2/3 mt-7'>
+						<p className='text-white text-justify text-sm sm:text-base md:text-lg lg:text-2xl w-full md:w-2/3 mt-7'>
 							{t('more')}
 						</p>
 					</div>
@@ -107,7 +108,9 @@ export default function Home() {
 				<div className='max-w-6xl mx-auto px-4 py-10'>
 					<section id='news'>
 						<div className="w-full">
-							<div className="uppercase text-4xl text-lightBlue font-bold" data-aos="fade-right">{t('news')}</div>
+							<div className="flex">
+								<Link to='articles/1' className="uppercase text-4xl text-lightBlue font-bold underline-hover" data-aos="fade-right">{t('news')}</Link>
+							</div>
 							{
 								(isLoadingArticles) ?
 									(

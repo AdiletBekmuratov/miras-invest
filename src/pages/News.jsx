@@ -55,7 +55,7 @@ function News() {
 			<Helmet title="Все Новости" meta={[{ "name": "description", "content": "Все последние и актуальные новости на сайте MIRAS INVEST" }]} />
 			<div className='max-w-6xl mx-auto px-4 py-10'>
 				<div>
-					<h1>{t('all_news')}</h1>
+					<h1 className="text-lightBlue">{t('all_news')}</h1>
 				</div>
 				<div className='grid grid-cols-1 md:grid-cols-3 pt-10 gap-y-6 gap-x-12'>
 					{data && data?.data?.map(article => (

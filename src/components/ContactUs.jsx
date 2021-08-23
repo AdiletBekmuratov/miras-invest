@@ -11,7 +11,7 @@ function ContactUs({ aos }) {
 	const { t } = useTranslation()
 
 	const postForm = (data) => {
-		return fetch(`${API_URL}/contacts`, {
+		return fetch(`${API_URL}/api/contacts`, {
 			method: 'POST',
 			mode: 'cors',
 			cache: 'no-cache',
@@ -39,6 +39,10 @@ function ContactUs({ aos }) {
 			success: 'Данные отправлены',
 			error: 'Ошибка при отправке данных',
 		});
+
+		event.target.username.value = ''
+		event.target.phone.value = ''
+		event.target.email.value = ''
 
 		setLoading(false)
 	}

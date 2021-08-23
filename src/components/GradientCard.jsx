@@ -8,7 +8,7 @@ function GradientCard({ article, aos }) {
 		<div className={`w-full h-[300x] card-hover
 		${(article.title_en && i18next.language === 'en') || (article.title_kz && i18next.language === 'kz') || (article.title_ru && i18next.language === 'ru') ? 'block' : 'hidden'}`} 
 		data-aos={aos} style={{
-			backgroundImage: `linear-gradient(0deg, #007FFF 0%, rgba(0, 127, 255, 0) 90%), url(${fromImageToUrl(article.image)})`,
+			backgroundImage: `linear-gradient(0deg, #22BFEA 0%, rgba(0, 127, 255, 0) 90%), url(${fromImageToUrl(article.image)})`,
 			backgroundRepeat: 'no-repeat',
 			backgroundPosition: 'center',
 			backgroundSize: 'cover',

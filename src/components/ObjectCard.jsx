@@ -7,7 +7,7 @@ function ObjectCard({ object, aos }) {
 	return (
 		<div className={`w-full h-[310x] card-hover 
 		${(object.title_en && i18next.language === 'en') || (object.title_kz && i18next.language === 'kz') || (object.title_ru && i18next.language === 'ru') ? 'block' : 'hidden'}`} data-aos={aos} style={{
-				backgroundImage: `linear-gradient(0deg, #007FFF 0%, rgba(0, 127, 255, 0) 90%), url(${fromImageToUrl(object.image)})`,
+				backgroundImage: `linear-gradient(0deg, #22BFEA 0%, rgba(0, 127, 255, 0) 90%), url(${fromImageToUrl(object.image)})`,
 				backgroundRepeat: 'no-repeat',
 				backgroundPosition: 'center',
 				backgroundSize: 'cover',

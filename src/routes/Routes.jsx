@@ -5,7 +5,6 @@ import Home from '@/pages/Home';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import About from '@/pages/About';
-import SinglePalace from '@/pages/SinglePalace';
 import ScrollToTop from '@/utils/ScrollToTop';
 import Article from '@/pages/Article';
 import News from '@/pages/News';

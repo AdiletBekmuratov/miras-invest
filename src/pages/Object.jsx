@@ -128,7 +128,7 @@ function Object() {
 				</section>
 
 				<section className="container lg:max-w-6xl mx-auto px-4 py-10 bg-white">
-					<div className="flex justify-start items-center flex-wrap space-x-6 space-y-6">
+					<div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-6">
 						<div className={`justify-start items-center 
 									${(data.architecture_en && i18next.language === 'en') || (data.architecture_kz && i18next.language === 'kz') || (data.architecture_ru && i18next.language === 'ru') ? 'flex' : 'hidden'}
 							`}>
@@ -208,10 +208,24 @@ function Object() {
 				<section>
 					<div className="max-w-6xl mx-auto px-4 py-10">
 						<div className="grid gap-6 grid-cols-1 md:grid-cols-2">
-							{data?.district_en.split(";").map((part, i) => {
+							{i18next.language === 'en' && data?.district_en.split(";").map((part, i) => {
 
 								return (
-									<p key={i} className={`${pos[i] === 0 ? 'bg-bBlue' : 'bg-lightBlue'}  py-5 px-9 text-xl text-white`} >{part}</p>
+									<p key={i} className={`${pos[i] === 0 ? 'bg-bBlue' : 'bg-lightBlue'}  py-5 px-9 text-xl text-white flex items-center`} >{part}</p>
+								)
+							}
+							)}
+							{i18next.language === 'ru' && data?.district_ru.split(";").map((part, i) => {
+
+								return (
+									<p key={i} className={`${pos[i] === 0 ? 'bg-bBlue' : 'bg-lightBlue'}  py-5 px-9 text-xl text-white flex items-center`} >{part}</p>
+								)
+							}
+							)}
+							{i18next.language === 'kz' && data?.district_kz.split(";").map((part, i) => {
+
+								return (
+									<p key={i} className={`${pos[i] === 0 ? 'bg-bBlue' : 'bg-lightBlue'}  py-5 px-9 text-xl text-white flex items-center`} >{part}</p>
 								)
 							}
 							)}
