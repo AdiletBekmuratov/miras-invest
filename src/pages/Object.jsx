@@ -122,7 +122,7 @@ function Object() {
 							<p className="flex text-white items-center text-xl md:text-4xl font-semibold uppercase p-6 bg-lightBlue min-h-[125px] max-w-[300px]">
 								{i18next.language === 'en' ? data?.info1_en : i18next.language === 'ru' ? data?.info1_ru : data?.info1_kz}
 							</p>
-							<img src={fromImageToUrl(data?.info1_image)} alt="info1" className="absolute object-cover rounded-full border-8 border-white w-[300px] h-[300px] right-[-50%] top-1/2 -translate-y-1/2 -translate-x-[50%]" />
+							<img src={fromImageToUrl(data?.info1_image)} alt="info1" className="absolute object-cover rounded-full border-8 border-white w-[300px] h-[300px] right-[-50%] top-1/2 -translate-y-1/2 -translate-x-[50%] hidden lg:block" />
 						</div>
 					</div>
 				</section>
@@ -200,7 +200,7 @@ function Object() {
 							<p className="flex text-white items-center text-xl md:text-4xl font-semibold uppercase p-6 bg-lightBlue max-w-[300px]">
 								{i18next.language === 'en' ? data?.info2_en : i18next.language === 'ru' ? data?.info2_ru : data?.info2_kz}
 							</p>
-							<img src={fromImageToUrl(data?.info2_image)} alt="info2" className="absolute object-cover rounded-full border-8 border-white w-[300px] h-[300px] right-[-50%] top-1/2 -translate-y-1/2 -translate-x-[50%]" />
+							<img src={fromImageToUrl(data?.info2_image)} alt="info2" className="absolute object-cover rounded-full border-8 border-white w-[300px] h-[300px] right-[-50%] top-1/2 -translate-y-1/2 -translate-x-[50%] hidden lg:block" />
 						</div>
 					</div>
 				</section>

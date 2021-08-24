@@ -19,17 +19,19 @@ export default function Routes() {
 			<div className='min-h-screen flex flex-col justify-center'>
 				<div><Toaster position="top-right" /></div>
 				<Header />
-				<ScrollToTop>
-					<Switch>
-						<Route exact path='/' component={Home} />
-						<Route exact path='/about' component={About} />
-						<Route path='/articles/article/:id' component={Article} />
-						<Route path='/objects/object/:id' component={Object} />
-						<Route path='/articles/:id' component={News} />
-						<Route path='/objects/:id' component={Objects} />
-						<Route component={NotFound} />
-					</Switch>
-				</ScrollToTop>
+				<div className="overflow-x-hidden w-full h-full m-0 p-0">
+					<ScrollToTop>
+						<Switch>
+							<Route exact path='/' component={Home} />
+							<Route exact path='/about' component={About} />
+							<Route path='/articles/article/:id' component={Article} />
+							<Route path='/objects/object/:id' component={Object} />
+							<Route path='/articles/:id' component={News} />
+							<Route path='/objects/:id' component={Objects} />
+							<Route component={NotFound} />
+						</Switch>
+					</ScrollToTop>
+				</div>
 				<Footer />
 			</div>
 		</Router>
