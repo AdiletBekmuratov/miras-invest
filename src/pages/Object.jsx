@@ -83,7 +83,7 @@ function Object() {
 			<main className="bg-white">
 				<section>
 					<div className="w-full h-[418px]" style={{
-						backgroundImage: `linear-gradient(89.66deg, #22BFEA 0.29%, rgba(0, 127, 255, 0.460825) 27.27%, rgba(0, 127, 255, 0) 98.05%), url(${fromImageToUrl(data && data.image)})`,
+						backgroundImage: `linear-gradient(89.66deg, #22BFEA 0.29%, rgba(0, 127, 255, 0.460825) 15.27%, rgba(0, 127, 255, 0) 98.05%), url(${fromImageToUrl(data && data.image)})`,
 						backgroundRepeat: 'no-repeat',
 						backgroundPosition: 'center',
 						backgroundSize: 'cover',

@@ -1,8 +1,8 @@
 import placeholder from '/images/main.jpg'
 
 export const API_URL = "https://admin.miras-invest.com"
-export const PUBLIC_URL = "http://localhost:3000"
-//https://miras-invest.com
+export const PUBLIC_URL = "https://miras-invest.com"
+
 export const fromImageToUrl = (image) => {
 	if(!image){
 		return placeholder

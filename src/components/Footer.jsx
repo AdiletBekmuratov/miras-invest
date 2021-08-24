@@ -1,10 +1,10 @@
 import React from 'react'
-import CustomLink from './CustomLink'
 import FacebookIcon from '/images/facebook.svg'
 import InstagramIcon from '/images/instagram.svg'
 import TelegramIcon from '/images/telegram.svg'
 import YoutubeIcon from '/images/youtube.svg'
 import { useTranslation } from "react-i18next";
+import CustomLink from './CustomLink'
 
 function Footer() {
 	const { t } = useTranslation();
@@ -18,17 +18,11 @@ function Footer() {
 
 						<div>
 							<div className='flex space-x-4 sm:ml-4'>
-								<CustomLink href="https://www.telegram.com" className='flex-shrink-0'>
-									<img src={TelegramIcon} alt="telegram" className="h-6 w-6 object-contain" />
-								</CustomLink>
-								<CustomLink href="https://www.instagram.com" className='flex-shrink-0'>
+								<CustomLink href="https://www.instagram.com/mirasinvest/" className='flex-shrink-0'>
 									<img src={InstagramIcon} alt="instagram" className="h-6 w-6 object-contain" />
 								</CustomLink>
-								<CustomLink href="https://www.facebook.com" className='flex-shrink-0'>
+								<CustomLink href="https://www.facebook.com/MirasInvestCompany" className='flex-shrink-0'>
 									<img src={FacebookIcon} alt="facebook" className="h-6 w-6 object-contain" />
-								</CustomLink>
-								<CustomLink href="https://www.youtube.com" className='flex-shrink-0'>
-									<img src={YoutubeIcon} alt="youtube" className="h-6 w-6 object-contain" />
 								</CustomLink>
 							</div>
 						</div>
