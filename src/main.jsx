@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 
+import 'swiper/css/bundle';
 import '@/index.css';
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import App from '@/App';

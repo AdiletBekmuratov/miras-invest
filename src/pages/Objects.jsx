@@ -10,17 +10,18 @@ import { Helmet } from 'react-helmet-async';
 import axios from 'axios';
 import { API_URL } from '@/utils/imageURL';
 import { useQuery, useQueryClient } from 'react-query';
-
-const fetchPlaces = async ({ queryKey }) => {
-	const [_key, { id }] = queryKey
-	const { data } = await axios.get(`${API_URL}/api/places?page=${id}`)
-	return data
-}
+import i18next from "i18next";
 
 function Objects() {
 	const { id } = useParams()
 	const history = useHistory();
 	const [offset, setOffset] = useState(12)
+
+	const fetchPlaces = async ({ queryKey }) => {
+		const [_key, { id }] = queryKey
+		const { data } = await axios.get(`${API_URL}/api/places?page=${id}&limit=${offset}&locale=${i18next.language && i18next.language}`)
+		return data
+	}
 
 	const { t, i18n } = useTranslation()
 
@@ -29,7 +30,7 @@ function Objects() {
 
 
 	const handlePaginate = (current, pageSize) => {
-		history.push(`/articles/${current}`)
+		history.push(`/objects/${current}`)
 		queryClient.prefetchQuery(['projects', { id }], fetchArticles)
 	}
 

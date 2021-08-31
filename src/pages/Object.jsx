@@ -1,23 +1,26 @@
 import ContactUs from '@/components/ContactUs'
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import Loader from 'react-loader-spinner'
 import { useParams } from 'react-router'
 import { fromImageToUrl } from '@/utils/imageURL'
 import Markdown from 'markdown-to-jsx'
 import { Helmet } from 'react-helmet-async'
-import AppliancesIcon from '/images/appliances.svg'
-import ArchitectureIcon from '/images/architecture.svg'
-import ChoicesIcon from '/images/choices.svg'
-import ParkingIcon from '/images/parking.svg'
-import Smart_HouseIcon from '/images/smart_house.svg'
-import SwimPoolIcon from '/images/swim_pool.svg'
-import UnderfloorHeatingIcon from '/images/underfloor-heating.svg'
 import { useQuery } from 'react-query'
 import axios from 'axios'
-import i18next from 'i18next'
 import { API_URL } from '@/utils/imageURL'
+import { Swiper, SwiperSlide } from 'swiper/react';
+import Cookies from 'js-cookie';
+import SwiperCore, {
+	Pagination, Navigation, Autoplay
+} from 'swiper';
+
+SwiperCore.use([Pagination, Navigation, Autoplay]);
 
 const options = {
+	namedCodesToUnicode: {
+		euro: '\u20AC',
+		dollar: '\u0024',
+	},
 	overrides: {
 		a: {
 			props: {
@@ -47,15 +50,32 @@ const options = {
 	},
 }
 
+const responsive = {
+	'0': {
+		'slidesPerView': 1,
+	},
+	'770': {
+		'slidesPerView': 2,
+	},
+	'1150': {
+		'slidesPerView': 3,
+	},
+};
+
 const fetchPlace = async ({ queryKey }) => {
 	const [_key, { id }] = queryKey
-	const { data } = await axios.get(`${API_URL}/api/places/${id}`)
+	const { data } = await axios.get(`${API_URL}/api/places/${id}?locale=${Cookies.get('i18next')}`)
 	return data
 }
 
 function Object() {
 	const { id } = useParams()
-	const [pos, setPos] = useState([0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1])
+	const prevRef = useRef(null);
+	const nextRef = useRef(null);
+	const [modal, setModal] = useState({
+		show: false,
+		src: ''
+	})
 	const { isLoading, error, data } = useQuery(['place', { id }], fetchPlace)
 
 	if (isLoading) {
@@ -79,7 +99,19 @@ function Object() {
 
 	return (
 		<>
-			<Helmet title={i18next.language === 'en' ? data?.title_en : i18next.language === 'ru' ? data.title_ru : data.title_kz} meta={[{ "name": "description", "content": data?.object?.description }]} />
+			<Helmet title={data.title} meta={[{ "name": "description", "content": data?.description }]} />
+			<div className={`fixed z-50 inset-0 overflow-y-auto cursor-pointer justify-center items-center ${modal.show ? 'flex' : 'hidden'}`} aria-labelledby="modal-title" role="dialog" aria-modal="true" onClick={() => setModal({
+				show: false,
+				src: ''
+			})} >
+				<div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+
+				<span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+				<div class={`inline-block bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-6xl sm:w-full`}>
+					<img src={modal.src} alt={modal.src} />
+				</div>
+			</div>
 			<main className="bg-white">
 				<section>
 					<div className="w-full h-[418px]" style={{
@@ -91,144 +123,97 @@ function Object() {
 					}}>
 						<div className="container lg:max-w-6xl mx-auto flex flex-col pt-20 p-5 z-10">
 							<h1 className='text-white uppercase font-extrabold'>
-								{i18next.language === 'en' ? data?.title_en : i18next.language === 'ru' ? data?.title_ru : data?.title_kz}
+								{data.title}
 							</h1>
 							<h4 className='text-white text-xl font-bold mt-5'>
-								{i18next.language === 'en' ? data?.location_en : i18next.language === 'ru' ? data?.location_ru : data?.location_kz}
+								{data.description}
 							</h4>
 							<p className='text-white text-xl max-w-[570px] mt-5'>
-								{i18next.language === 'en' ? data?.description_en : i18next.language === 'ru' ? data?.description_ru : data?.description_kz}
+								{data.secondary_desc}
 							</p>
 						</div>
 					</div>
 				</section>
 
 				<section>
-					<div className="max-w-6xl mx-auto px-4 py-20">
+					<div className="max-w-6xl mx-auto px-4 py-10 lg:py-20">
 						<div className="flex items-center">
 							<div className="flex justify-center items-center py-10 px-4 md:px-20 border-4 border-lightBlue ml-0 lg:ml-60 relative">
 								<img src={fromImageToUrl(data && data.image)} alt="body" className="w-[300px] h-[300px] left-[-250px] object-cover rounded-full border-8 border-white absolute hidden lg:block" />
 								<Markdown options={options}>
-									{i18next.language === 'en' ? data?.body_en : i18next.language === 'ru' ? data?.body_ru : data?.body_kz}
+									{data.body}
 								</Markdown>
 							</div>
 						</div>
 					</div>
 				</section>
+				{
+					data.image_gallery && <section className="container lg:max-w-6xl mx-auto px-4 py-16">
+						<div className='flex justify-between items-center  mb-10'>
+							<h2 className="text-lightBlue">Галерея</h2>
+							<div className='flex space-x-4 items-center'>
+								<div ref={prevRef} className='cursor-pointer text-lightBlue filter hover:brightness-110'>
+									<svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+										<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+									</svg>
+								</div>
+								<div ref={nextRef} className='cursor-pointer text-lightBlue filter hover:brightness-110'>
+									<svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+										<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+									</svg>
+								</div>
+							</div>
+						</div>
+
+						<Swiper onInit={(swiper) => {
+							swiper.params.navigation.prevEl = prevRef.current;
+							swiper.params.navigation.nextEl = nextRef.current;
+							swiper.navigation.init();
+							swiper.navigation.update();
+						}} loop={true} breakpoints={responsive} spaceBetween={24} autoplay={{
+							"delay": 3500,
+							"disableOnInteraction": false
+						}} pagination={{
+							"dynamicBullets": true,
+							"clickable": true
+						}}>
+							{JSON.parse(data.image_gallery).map(img => (
+								<SwiperSlide key={img}>
+									<img className='cursor-pointer h-80 w-full object-cover select-none rounded-lg' src={fromImageToUrl(img)} alt={img} onClick={() => setModal({
+										show: true,
+										src: fromImageToUrl(img)
+									})} />
+								</SwiperSlide>
+							))}
+						</Swiper>
+					</section>
+				}
 
 				<section>
-					<div className="container lg:max-w-6xl mx-auto px-4 py-10">
-						<div className="bg-lightBlue p-6 relative max-w-[470px]">
-							<p className="flex text-white items-center text-xl md:text-4xl font-semibold uppercase p-6 bg-lightBlue min-h-[125px] max-w-[300px]">
-								{i18next.language === 'en' ? data?.info1_en : i18next.language === 'ru' ? data?.info1_ru : data?.info1_kz}
-							</p>
-							<img src={fromImageToUrl(data?.info1_image)} alt="info1" className="absolute object-cover rounded-full border-8 border-white w-[300px] h-[300px] right-[-50%] top-1/2 -translate-y-1/2 -translate-x-[50%] hidden lg:block" />
-						</div>
-					</div>
-				</section>
-
-				<section className="container lg:max-w-6xl mx-auto px-4 py-10 bg-white">
-					<div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-6">
-						<div className={`justify-start items-center 
-									${(data.architecture_en && i18next.language === 'en') || (data.architecture_kz && i18next.language === 'kz') || (data.architecture_ru && i18next.language === 'ru') ? 'flex' : 'hidden'}
-							`}>
-							<img src={ArchitectureIcon} alt="ArchitectureIcon" className="h-16 w-16 object-cover" />
-							<p className="text-lg md:text-2xl max-w-[440px] ml-6">
-								{i18next.language === 'en' ? data?.architecture_en : i18next.language === 'ru' ? data?.architecture_ru : data?.architecture_kz}
-							</p>
-						</div>
-
-						<div className={`justify-start items-center 
-									${(data.swimming_pool_en && i18next.language === 'en') || (data.swimming_pool_kz && i18next.language === 'kz') || (data.swimming_pool_ru && i18next.language === 'ru') ? 'flex' : 'hidden'}
-							`}>
-							<img src={SwimPoolIcon} alt="SwimPoolIcon" className="h-16 w-16 object-cover" />
-							<p className="text-lg md:text-2xl max-w-[440px] ml-6">
-								{i18next.language === 'en' ? data?.swimming_pool_en : i18next.language === 'ru' ? data?.swimming_pool_ru : data?.swimming_pool_kz}
-							</p>
-						</div>
-
-						<div className={`justify-start items-center 
-									${(data.parking_en && i18next.language === 'en') || (data.parking_kz && i18next.language === 'kz') || (data.parking_ru && i18next.language === 'ru') ? 'flex' : 'hidden'}
-							`}>
-							<img src={ParkingIcon} alt="ParkingIcon" className="h-16 w-16 object-cover" />
-							<p className="text-lg md:text-2xl max-w-[440px] ml-6">
-								{i18next.language === 'en' ? data?.parking_en : i18next.language === 'ru' ? data?.parking_ru : data?.parking_kz}
-							</p>
-						</div>
-
-						<div className={`justify-start items-center 
-									${(data.smart_house_en && i18next.language === 'en') || (data.smart_house_kz && i18next.language === 'kz') || (data.smart_house_ru && i18next.language === 'ru') ? 'flex' : 'hidden'}
-							`}>
-							<img src={Smart_HouseIcon} alt="Smart_HouseIcon" className="h-16 w-16 object-cover" />
-							<p className="text-lg md:text-2xl max-w-[440px] ml-6">
-								{i18next.language === 'en' ? data?.smart_house_en : i18next.language === 'ru' ? data?.smart_house_ru : data?.smart_house_kz}
-							</p>
-						</div>
-
-						<div className={`justify-start items-center 
-									${(data.underfloor_heating_en && i18next.language === 'en') || (data.underfloor_heating_kz && i18next.language === 'kz') || (data.underfloor_heating_ru && i18next.language === 'ru') ? 'flex' : 'hidden'}
-							`}>
-							<img src={UnderfloorHeatingIcon} alt="UnderfloorHeatingIcon" className="h-16 w-16 object-cover" />
-							<p className="text-lg md:text-2xl max-w-[440px] ml-6">
-								{i18next.language === 'en' ? data?.underfloor_heating_en : i18next.language === 'ru' ? data?.underfloor_heating_ru : data?.underfloor_heating_kz}
-							</p>
-						</div>
-
-						<div className={`justify-start items-center 
-									${(data.appliances_en && i18next.language === 'en') || (data.appliances_kz && i18next.language === 'kz') || (data.appliances_ru && i18next.language === 'ru') ? 'flex' : 'hidden'}
-							`}>
-							<img src={AppliancesIcon} alt="AppliancesIcon" className="h-16 w-16 object-cover" />
-							<p className="text-lg md:text-2xl max-w-[440px] ml-6">
-								{i18next.language === 'en' ? data?.appliances_en : i18next.language === 'ru' ? data?.appliances_ru : data?.appliances_kz}
-							</p>
-						</div>
-
-						<div className={`justify-start items-center 
-									${(data.choices_en && i18next.language === 'en') || (data.choices_kz && i18next.language === 'kz') || (data.choices_ru && i18next.language === 'ru') ? 'flex' : 'hidden'}
-							`}>
-							<img src={ChoicesIcon} alt="ChoicesIcon" className="h-16 w-16 object-cover" />
-							<p className="text-lg md:text-2xl max-w-[440px] ml-6">
-								{i18next.language === 'en' ? data?.choices_en : i18next.language === 'ru' ? data?.choices_ru : data?.choices_kz}
-							</p>
-						</div>
-					</div>
-				</section>
-
-				<section>
-					<div className="container lg:max-w-6xl mx-auto px-4 py-16">
-						<div className="bg-lightBlue p-6 relative max-w-[470px]">
+					<div className="container lg:max-w-6xl mx-auto px-4 py-10 lg:py-16">
+						<div className="bg-lightBlue p-6 relative w-full lg:max-w-[470px]">
 							<p className="flex text-white items-center text-xl md:text-4xl font-semibold uppercase p-6 bg-lightBlue max-w-[300px]">
-								{i18next.language === 'en' ? data?.info2_en : i18next.language === 'ru' ? data?.info2_ru : data?.info2_kz}
+								{data.info_title}
 							</p>
-							<img src={fromImageToUrl(data?.info2_image)} alt="info2" className="absolute object-cover rounded-full border-8 border-white w-[300px] h-[300px] right-[-50%] top-1/2 -translate-y-1/2 -translate-x-[50%] hidden lg:block" />
+							<img src={fromImageToUrl(data?.info_image)} alt="info2" className="absolute object-cover rounded-full border-8 border-white w-[300px] h-[300px] right-[-50%] top-1/2 -translate-y-1/2 -translate-x-[50%] hidden lg:block" />
 						</div>
 					</div>
 				</section>
 
 				<section>
-					<div className="max-w-6xl mx-auto px-4 py-10">
+					<div className="container lg:max-w-6xl mx-auto px-4 py-6 lg:py-16">
 						<div className="grid gap-6 grid-cols-1 md:grid-cols-2">
-							{i18next.language === 'en' && data?.district_en.split(";").map((part, i) => {
-
+							{data?.info_body.split(";").map((part, i) => {
 								return (
-									<p key={i} className={`${pos[i] === 0 ? 'bg-bBlue' : 'bg-lightBlue'}  py-5 px-9 text-xl text-white flex items-center`} >{part}</p>
+									<div className='flex space-x-4 items-center' key={i}>
+										<img src={fromImageToUrl(JSON.parse(data.info_icons)[i])} alt="ArchitectureIcon" className="h-16 w-16 object-cover" />
+										<p className="text-lg md:text-2xl ml-6">
+											{part}
+										</p>
+									</div>
 								)
+							})
 							}
-							)}
-							{i18next.language === 'ru' && data?.district_ru.split(";").map((part, i) => {
-
-								return (
-									<p key={i} className={`${pos[i] === 0 ? 'bg-bBlue' : 'bg-lightBlue'}  py-5 px-9 text-xl text-white flex items-center`} >{part}</p>
-								)
-							}
-							)}
-							{i18next.language === 'kz' && data?.district_kz.split(";").map((part, i) => {
-
-								return (
-									<p key={i} className={`${pos[i] === 0 ? 'bg-bBlue' : 'bg-lightBlue'}  py-5 px-9 text-xl text-white flex items-center`} >{part}</p>
-								)
-							}
-							)}
 						</div>
 					</div>
 				</section>

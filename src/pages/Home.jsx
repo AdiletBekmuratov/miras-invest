@@ -14,14 +14,16 @@ import { PUBLIC_URL, API_URL } from '@/utils/imageURL';
 import { Helmet } from 'react-helmet-async';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import i18next from "i18next";
 
 const fetchPlaces = async () => {
-	const { data } = await axios.get(`${API_URL}/api/places?limit=4`)
+	const { data } = await axios.get(`${API_URL}/api/places?limit=4&locale=${i18next.language && i18next.language}`)
+	console.log(data);
 	return data
 }
 
 const fetchArticles = async () => {
-	const { data } = await axios.get(`${API_URL}/api/articles?limit=3`)
+	const { data } = await axios.get(`${API_URL}/api/articles?limit=3&locale=${i18next.language && i18next.language}`)
 	return data
 }
 

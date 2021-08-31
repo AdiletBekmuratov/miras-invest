@@ -37,6 +37,7 @@ const Header = () => {
 
 	const handleMobileSelector = (event) => {
 		i18next.changeLanguage(event.target.value)
+		window.location.reload()
 	}
 
 	return (
@@ -64,8 +65,12 @@ const Header = () => {
 								</button>
 								<ul className="dropdown-menu absolute hidden text-gray-400 pt-2 w-full">
 									{languages.map(({ code, country_code }) => (
-										<button className='flex bg-gray-200 hover:bg-gray-400 py-2 px-2 justify-center whitespace-no-wrap cursor-pointer disabled:hover:bg-gray-300 disabled:bg-gray-300 disabled:cursor-not-allowed' 
-										disabled={(i18n.language === 'en' && country_code === 'US') || i18n.language.toUpperCase() === country_code} onClick={() => { i18next.changeLanguage(code) }} key={country_code}>
+										<button className='flex bg-gray-200 hover:bg-gray-400 py-2 px-2 justify-center whitespace-no-wrap cursor-pointer disabled:hover:bg-gray-300 disabled:bg-gray-300 disabled:cursor-not-allowed'
+											disabled={(i18n.language === 'en' && country_code === 'US') || i18n.language.toUpperCase() === country_code}
+											onClick={() => {
+												i18next.changeLanguage(code)
+												window.location.reload()
+											}} key={country_code}>
 											<Flag country={country_code} />
 										</button>))}
 								</ul>

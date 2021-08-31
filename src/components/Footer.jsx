@@ -9,7 +9,7 @@ import CustomLink from './CustomLink'
 function Footer() {
 	const { t } = useTranslation();
 	return (
-		<footer className='footer mt-auto'>
+		<footer className='footer'>
 			<div className="max-w-6xl mx-auto px-4">
 				<div className="flex justify-between">
 					<div className="flex py-8 flex-col sm:flex-row sm:space-x-7 sm:py-10 sm:items-center">

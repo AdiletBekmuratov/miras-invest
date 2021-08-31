@@ -19,7 +19,7 @@ export default function Routes() {
 			<div className='min-h-screen flex flex-col justify-center'>
 				<div><Toaster position="top-right" /></div>
 				<Header />
-				<div className="overflow-x-hidden w-full h-full m-0 p-0">
+				<div className="overflow-x-hidden w-full h-full m-0 p-0 flex-grow flex flex-col">
 					<ScrollToTop>
 						<Switch>
 							<Route exact path='/' component={Home} />

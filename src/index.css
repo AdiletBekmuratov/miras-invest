@@ -114,6 +114,10 @@
 	}
 }
 
+:root {
+	--swiper-theme-color: #22BFEA !important;
+}
+
 .footer{
 	background: linear-gradient(90deg, #22BFEA 0%, #125293 58.35%, #22BFEA 100%);
 }

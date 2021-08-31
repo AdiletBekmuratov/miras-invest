@@ -86,10 +86,9 @@ function ContactUs({ aos }) {
 							</div>
 						</div>
 						<div className="w-full md:w-8/12 md:pl-16 md:px-3 flex justify-center">
-							<iframe width="520" height="400" frameBorder="0" scrolling="no" marginHeight="0" marginWidth="0" id="gmap_canvas" src="https://maps.google.com/maps?width=520&amp;height=400&amp;hl=en&amp;q=%D0%9A%D0%BE%D1%88%D0%BA%D0%B0%D1%80%D0%B1%D0%B0%D0%B5%D0%B2%D0%B0%202,%20%D0%B1%D0%BB%D0%BE%D0%BA%20%D1%81-2%20Nur-Sultan+()&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
+							<iframe width="520" height="400" frameBorder="0" scrolling="no" marginHeight="0" marginWidth="0" id="gmap_canvas" src="https://maps.google.com/maps?width=520&amp;height=400&amp;hl=en&amp;q=%D0%9A%D0%BE%D1%88%D0%BA%D0%B0%D1%80%D0%B1%D0%B0%D0%B5%D0%B2%D0%B0%202,%20%20%D0%B1%D0%BB%D0%BE%D0%BA%20%D1%81%202%20Nur-Sultan+()&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
 						</div>
 					</div>
-
 				</form>
 			</div>
 		</div>

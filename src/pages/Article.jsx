@@ -6,9 +6,9 @@ import { fromImageToUrl } from '@/utils/imageURL'
 import Markdown from 'markdown-to-jsx';
 import { Helmet } from 'react-helmet-async'
 import { useQuery } from 'react-query'
-import i18next from 'i18next'
 import { API_URL } from '@/utils/imageURL'
 import axios from 'axios'
+import Cookies from 'js-cookie';
 
 const options = {
 	overrides: {
@@ -35,14 +35,17 @@ const options = {
 	},
 }
 
-const fetchArticle = async ({ queryKey }) => {
-	const [_key, { id }] = queryKey
-	const { data } = await axios.get(`${API_URL}/api/articles/${id}`)
-	return data
-}
+
 
 function Article() {
 	const { id } = useParams()
+
+	const fetchArticle = async ({ queryKey }) => {
+		const [_key, { id }] = queryKey
+		const { data } = await axios.get(`${API_URL}/api/articles/${id}?locale=${Cookies.get('i18next')}`)
+		return data
+	}
+
 	const { isLoading, error, data } = useQuery(['article', { id }], fetchArticle)
 
 	if (isLoading) {
@@ -65,7 +68,7 @@ function Article() {
 	}
 	return (
 		<>
-			<Helmet title={i18next.language === 'en' ? data?.title_en : i18next.language === 'ru' ? data.title_ru : data.title_kz} meta={[{ "name": "description", "content": data?.article?.description }]} />
+			<Helmet title={data.title} meta={[{ "name": "description", "content": data?.description }]} />
 			<section>
 				<div className="w-full h-[418px]" style={{
 					backgroundImage: `linear-gradient(89.66deg, #22BFEA 0.29%, rgba(0, 127, 255, 0.460825) 15.27%, rgba(0, 127, 255, 0) 98.05%), url(${fromImageToUrl(data && data.image)})`,
@@ -76,11 +79,11 @@ function Article() {
 				}}>
 					<div className="container lg:max-w-6xl mx-auto flex flex-col pt-20 p-5 z-10">
 						<h1 className='text-white uppercase font-extrabold'>
-							{i18next.language === 'en' ? data?.title_en : i18next.language === 'ru' ? data?.title_ru : data?.title_kz}
+							{data.title}
 						</h1>
 
 						<p className='text-white text-xl max-w-[570px] mt-5'>
-							{i18next.language === 'en' ? data?.description_en : i18next.language === 'ru' ? data?.description_ru : data?.description_kz}
+							{data.description}
 						</p>
 					</div>
 				</div>
@@ -90,7 +93,7 @@ function Article() {
 				<div className='max-w-6xl mx-auto px-4 py-10'>
 					<section>
 						<Markdown options={options}>
-							{i18next.language === 'en' ? data?.body_en : i18next.language === 'ru' ? data?.body_ru : data?.body_kz}
+							{data.body}
 						</Markdown>
 					</section>
 				</div>

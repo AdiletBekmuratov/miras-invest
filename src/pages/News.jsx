@@ -10,17 +10,18 @@ import { Helmet } from 'react-helmet-async';
 import { useQuery, useQueryClient } from 'react-query';
 import axios from 'axios';
 import { API_URL } from '@/utils/imageURL';
-
-const fetchArticles = async ({ queryKey }) => {
-	const [_key, { id }] = queryKey
-	const { data } = await axios.get(`${API_URL}/api/articles?page=${id}`)
-	return data
-}
+import i18next from "i18next";
 
 function News() {
 	const { id } = useParams()
 	const history = useHistory();
 	const [offset, setOffset] = useState(12)
+
+	const fetchArticles = async ({ queryKey }) => {
+		const [_key, { id }] = queryKey
+		const { data } = await axios.get(`${API_URL}/api/articles?page=${id}&limit=${offset}&locale=${i18next.language && i18next.language}`)
+		return data
+	}
 
 	const { t, i18n } = useTranslation()
 	const queryClient = useQueryClient()
